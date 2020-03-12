@@ -1,0 +1,6 @@
+framework module Pods_ClipboardAppTests {
+  umbrella header "Pods-ClipboardAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
