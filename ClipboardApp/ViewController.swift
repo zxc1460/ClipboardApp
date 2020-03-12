@@ -10,9 +10,9 @@ import UIKit
 import SideMenu
 
 class MainViewController: UIViewController {
-    var sideMenu: UISideMenuNavigationController?
+    var sideMenu: SideMenuNavigationController?
     
-    lazy var leftButton: UIBarButtonItem = {
+    var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
 
         return button
@@ -41,7 +41,6 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = UIColor.colorWithRGBHex(hex: 0xff8a69)
         self.navigationController?.navigationBar.isTranslucent = false
-
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
@@ -59,8 +58,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
-        
-        
+
         return cell
         
     }
