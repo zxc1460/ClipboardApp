@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import MGSwipeTableCell
 
-class ClipboardCustomCell : UITableViewCell {
+class ClipboardCustomCell : MGSwipeTableCell {
     @IBOutlet var colorTag: UIImageView!
     @IBOutlet var contextLabel: UILabel!
     @IBOutlet var copyBtn: UIButton!

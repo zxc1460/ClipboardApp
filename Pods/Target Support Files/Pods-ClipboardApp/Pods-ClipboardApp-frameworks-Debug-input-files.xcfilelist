@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-ClipboardApp/Pods-ClipboardApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework
 ${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework

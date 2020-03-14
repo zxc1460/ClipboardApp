@@ -8,8 +8,19 @@
 
 import UIKit
 import SideMenu
+import MGSwipeTableCell
 
 class MainViewController: UIViewController {
+    
+    let colorTagRGB = [
+        UIColor.colorWithRGBHex(hex: 0xdbacfc), // pupple
+        UIColor.colorWithRGBHex(hex: 0x82c5ff), // blue
+        UIColor.colorWithRGBHex(hex: 0x0aeb99), // green
+        UIColor.colorWithRGBHex(hex: 0xf5d442), // yellow
+        UIColor.colorWithRGBHex(hex: 0xff8a78), // red
+    ]
+    let swipeBtnBgColor = UIColor.colorWithRGBHex(hex: 0xe6e6e6)
+    
     var sideMenu: SideMenuNavigationController?
     
     var leftButton: UIBarButtonItem = {
@@ -22,7 +33,6 @@ class MainViewController: UIViewController {
     @IBAction func sideMenuButtonClicked(_ sender: Any) {
         present(sideMenu!, animated: true, completion: nil)
     }
-    
     
     
     override func viewDidLoad() {
@@ -52,20 +62,43 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 15;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
-    
+        
+        cell.colorTag.tintColor = .white
+        
+        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red)
+        var colorTagBtns : [MGSwipeButton] = [delBtn]
+        
+        for color in self.colorTagRGB {
+            let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor)
+            
+            colorTagBtn.tintColor = color
+//            colorTagBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
+//            colorTagBtn.addTarget(self, action: #selector(colorTagButtonClicked), for: .touchUpInside)
+            colorTagBtns.append(colorTagBtn)
+//            colorTagBtn.isSelected = true
+        }
+        
+        delBtn.buttonWidth = UIScreen.main.bounds.width / 6
+        cell.rightButtons = colorTagBtns
+        
         return cell
         
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75.0;
     }
-    
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        code
+//    }
 }
 
 

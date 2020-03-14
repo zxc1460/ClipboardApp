@@ -1,16 +1,20 @@
 PODS:
+  - MGSwipeTableCell (1.6.11)
   - SideMenu (6.4.7)
 
 DEPENDENCIES:
+  - MGSwipeTableCell
   - SideMenu
 
 SPEC REPOS:
   trunk:
+    - MGSwipeTableCell
     - SideMenu
 
 SPEC CHECKSUMS:
+  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
   SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
 
-PODFILE CHECKSUM: f4119ab0369f1d65fbbdebbfff79a14d3ccdb84b
+PODFILE CHECKSUM: 719707f98bf205a46ed58642931d62d44b5b9692
 
 COCOAPODS: 1.9.0

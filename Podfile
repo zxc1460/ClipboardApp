@@ -7,6 +7,7 @@ target 'ClipboardApp' do
 
   # Pods for ClipboardApp
   pod 'SideMenu'
+  pod 'MGSwipeTableCell'
   target 'ClipboardAppTests' do
     inherit! :search_paths
     # Pods for testing
