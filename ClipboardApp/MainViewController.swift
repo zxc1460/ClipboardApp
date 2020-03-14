@@ -9,6 +9,7 @@
 import UIKit
 import SideMenu
 import MGSwipeTableCell
+import RealmSwift
 
 class MainViewController: UIViewController {
     
@@ -23,17 +24,62 @@ class MainViewController: UIViewController {
     
     var sideMenu: SideMenuNavigationController?
     
+    // realm과 데이터모델 변수
+    var realm: Realm?
+    var items: Results<ClipModel>?
+    
     var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
 
         return button
     }()
     
+    
     @IBOutlet var clipsTableView : UITableView?
     @IBAction func sideMenuButtonClicked(_ sender: Any) {
         present(sideMenu!, animated: true, completion: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //앱이 백그라운드에서 포그라운드로 돌아올 때 카피된 것이 있는지 확인하고 가져오기.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getCopiedText), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //뷰가 사라지면 노티피케이션 제거
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    // 카피된 내용 가져오는 함수
+    @objc func getCopiedText() {
+        if let str = UIPasteboard.general.string {
+            print("정상적으로 복사됨 텍스트: \(str)")
+            var flag: Bool = true
+            if let arr = items {
+                for item in arr {
+                    if item.copiedText == str {
+                        flag = false
+                        break
+                    }
+                }
+            }
+            
+            if flag {
+                let newClip = ClipModel()
+                newClip.copiedText = str
+                
+                try! realm?.write {
+                    realm?.add(newClip)
+                }
+            }
+            
+        }
+        
+        self.clipsTableView?.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +101,11 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         self.navigationItem.leftBarButtonItem = self.leftButton
+        
+        // realm 초기화, 저장 데이터 가져오기
+        realm = try! Realm()
+        items = realm?.objects(ClipModel.self)
+        
 
     }
     
@@ -65,10 +116,18 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15;
+        if let count = items?.count {
+            return count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let item = items?[indexPath.row] else {
+            return UITableViewCell()
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
         
         cell.colorTag.tintColor = .white
@@ -89,6 +148,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         delBtn.buttonWidth = UIScreen.main.bounds.width / 6
         cell.rightButtons = colorTagBtns
         
+        cell.contextLabel.text = item.copiedText
+        
+
         return cell
         
     }
