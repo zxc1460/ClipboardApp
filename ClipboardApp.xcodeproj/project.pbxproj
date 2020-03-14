@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		009185BBF14F53F965A24073 /* Pods_ClipboardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DF111595ABCD88D25B801C /* Pods_ClipboardApp.framework */; };
 		34536EE752DC280BBCFEF3D2 /* Pods_ClipboardAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EF8F433E3F20D734090558 /* Pods_ClipboardAppTests.framework */; };
+		AF4235A4241CA793003EA1BE /* ClipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4235A3241CA793003EA1BE /* ClipModel.swift */; };
 		AFB494F424149E1500C92D0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB494F324149E1500C92D0E /* AppDelegate.swift */; };
 		AFB494F624149E1500C92D0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB494F524149E1500C92D0E /* SceneDelegate.swift */; };
-		AFB494F824149E1500C92D0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB494F724149E1500C92D0E /* ViewController.swift */; };
+		AFB494F824149E1500C92D0E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB494F724149E1500C92D0E /* MainViewController.swift */; };
 		AFB494FB24149E1500C92D0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB494F924149E1500C92D0E /* Main.storyboard */; };
 		AFB494FD24149E1600C92D0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFB494FC24149E1600C92D0E /* Assets.xcassets */; };
 		AFB4950024149E1600C92D0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB494FE24149E1600C92D0E /* LaunchScreen.storyboard */; };
@@ -31,10 +32,11 @@
 
 /* Begin PBXFileReference section */
 		1D1BBBF15BFDAE6E7C3F6C64 /* Pods-ClipboardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipboardApp.debug.xcconfig"; path = "Target Support Files/Pods-ClipboardApp/Pods-ClipboardApp.debug.xcconfig"; sourceTree = "<group>"; };
+		AF4235A3241CA793003EA1BE /* ClipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipModel.swift; sourceTree = "<group>"; };
 		AFB494F024149E1500C92D0E /* ClipboardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipboardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB494F324149E1500C92D0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFB494F524149E1500C92D0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AFB494F724149E1500C92D0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AFB494F724149E1500C92D0E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AFB494FA24149E1500C92D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFB494FC24149E1600C92D0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFB494FF24149E1600C92D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AF4235A2241CA3D9003EA1BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF4235A3241CA793003EA1BE /* ClipModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		AFB494E724149E1500C92D0E = {
 			isa = PBXGroup;
 			children = (
@@ -104,9 +114,10 @@
 		AFB494F224149E1500C92D0E /* ClipboardApp */ = {
 			isa = PBXGroup;
 			children = (
+				AF4235A2241CA3D9003EA1BE /* Model */,
 				AFB494F324149E1500C92D0E /* AppDelegate.swift */,
 				AFB494F524149E1500C92D0E /* SceneDelegate.swift */,
-				AFB494F724149E1500C92D0E /* ViewController.swift */,
+				AFB494F724149E1500C92D0E /* MainViewController.swift */,
 				FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */,
 				AFB494F924149E1500C92D0E /* Main.storyboard */,
 				AFB494FC24149E1600C92D0E /* Assets.xcassets */,
@@ -302,7 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFB494F824149E1500C92D0E /* ViewController.swift in Sources */,
+				AF4235A4241CA793003EA1BE /* ClipModel.swift in Sources */,
+				AFB494F824149E1500C92D0E /* MainViewController.swift in Sources */,
 				AFB494F424149E1500C92D0E /* AppDelegate.swift in Sources */,
 				AFB494F624149E1500C92D0E /* SceneDelegate.swift in Sources */,
 				FA930230241A6FFC00B9B405 /* ClipboardCustomCell.swift in Sources */,
