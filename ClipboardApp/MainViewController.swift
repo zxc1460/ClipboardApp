@@ -22,23 +22,21 @@ class MainViewController: UIViewController {
     ]
     let swipeBtnBgColor = UIColor.colorWithRGBHex(hex: 0xe6e6e6)
     
-    var sideMenu: SideMenuNavigationController?
+    // 스토리보드 상에서 네비게이션바 아이템으로 사이드 메뉴 네비게이션 컨트롤러가 안띄어지네요.. 그래서 코드상으로 했습니다.
+    let sideMenu = SideMenuNavigationController(rootViewController: SideMenuViewController())
+
     
     // realm과 데이터모델 변수
     var realm: Realm?
     var items: Results<ClipModel>?
     
-    var leftButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
-
-        return button
-    }()
     
     
     @IBOutlet var clipsTableView : UITableView?
-    @IBAction func sideMenuButtonClicked(_ sender: Any) {
-        present(sideMenu!, animated: true, completion: nil)
+    @objc func sideMenuButtonClicked(_ sender: UIBarButtonItem) {
+        present(sideMenu, animated: true, completion: nil)
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,13 +82,18 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // button 에 action 이 안먹어서 버튼 선언을 viewDidLoad() 안에로 바꿨어요
+        let leftButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
+
+        
         clipsTableView?.delegate = self
         clipsTableView?.dataSource = self
         
-        sideMenu = SideMenuNavigationController(rootViewController: MainViewController())
-        sideMenu?.leftSide = true
-        sideMenu?.statusBarEndAlpha = 0
-        sideMenu?.navigationBar.isHidden = true
+        
+        sideMenu.leftSide = true
+        sideMenu.presentationStyle = .viewSlideOutMenuIn
+        sideMenu.statusBarEndAlpha = 0
+        sideMenu.navigationBar.isHidden = true
         
         
         navigationItem.title = "클립보드"
@@ -100,7 +103,7 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        self.navigationItem.leftBarButtonItem = self.leftButton
+        self.navigationItem.leftBarButtonItem = leftButton
         
         // realm 초기화, 저장 데이터 가져오기
         realm = try! Realm()
