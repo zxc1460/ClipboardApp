@@ -335,6 +335,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
+		016D89C8950C3D2995A669A815BB82BE /* MGSwipeTableCell-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MGSwipeTableCell-Info.plist"; sourceTree = "<group>"; };
+		107687458354E75108C359F559543B7B /* MGSwipeTableCell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.debug.xcconfig; sourceTree = "<group>"; };
+		19DB02431EB341E745ACF5B5707E43D1 /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuNavigationController.swift; path = Pod/Classes/SideMenuNavigationController.swift; sourceTree = "<group>"; };
+=======
 		0201096C9F47CE88853F0E1DFAD8710D /* Sync.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sync.swift; path = RealmSwift/Sync.swift; sourceTree = "<group>"; };
 		03A3CF316AC981A167EC23CD2AAA4574 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0881212B7A64507FCF31A8A58E47DBA4 /* Object.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Object.swift; path = RealmSwift/Object.swift; sourceTree = "<group>"; };
@@ -351,10 +356,17 @@
 		192B3242291CFFA6D748D648FB81F378 /* object_store.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = object_store.cpp; path = Realm/ObjectStore/src/object_store.cpp; sourceTree = "<group>"; };
 		19A7C005BC55292BDF48FA24DB209667 /* RLMSyncSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMSyncSession.h; path = include/RLMSyncSession.h; sourceTree = "<group>"; };
 		19FA4573CAF9A6AEAB88416B93EF2DDF /* RLMSyncCredentials.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMSyncCredentials.h; path = include/RLMSyncCredentials.h; sourceTree = "<group>"; };
+>>>>>>> master
 		1AB8B1DBEC2FEA97380AA1FF9597851E /* Pods-ClipboardApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ClipboardApp-acknowledgements.plist"; sourceTree = "<group>"; };
 		1C5808216375AADD1A07D47DBD7FE03E /* RLMAccessor.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMAccessor.mm; path = Realm/RLMAccessor.mm; sourceTree = "<group>"; };
 		1DD91D6CF4472DB8396CA99A2F3947C1 /* RLMRealmUtil.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMRealmUtil.mm; path = Realm/RLMRealmUtil.mm; sourceTree = "<group>"; };
 		1E83EE0A8FC3AE3B7B26DF71B2D9AA24 /* Pods-ClipboardApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ClipboardApp.release.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		1F9EFB78C6A716F9E804A7D6D917402A /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
+		22F7B182F92FF8DDE65741D79CF2FF88 /* Protected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protected.swift; path = Pod/Classes/Protected.swift; sourceTree = "<group>"; };
+		2559181D3FB2D8B873CD3E759D87C1E0 /* SideMenuAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuAnimationController.swift; path = Pod/Classes/SideMenuAnimationController.swift; sourceTree = "<group>"; };
+		25F18D1B6B5143BEF52BDC9EFD5CBE0A /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MGSwipeTableCell.framework; path = MGSwipeTableCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
 		1EFE3B9A3ACD3C5887DCD3E7ABB321C2 /* LinkingObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinkingObjects.swift; path = RealmSwift/LinkingObjects.swift; sourceTree = "<group>"; };
 		212672A0847A8E2D12C9D5BDEA4FB379 /* Optional.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Optional.swift; path = RealmSwift/Optional.swift; sourceTree = "<group>"; };
 		22C7C43035633EFC0DFF6EA9C721DB22 /* RLMSyncManager.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMSyncManager.mm; path = Realm/RLMSyncManager.mm; sourceTree = "<group>"; };
@@ -366,6 +378,7 @@
 		2B55D13C53D0C2497D40718347B42E3E /* RLMSyncSubscription.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMSyncSubscription.mm; path = Realm/RLMSyncSubscription.mm; sourceTree = "<group>"; };
 		2BC65858EFDEF5801512ED346FCD6704 /* RLMSyncSessionRefreshHandle.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMSyncSessionRefreshHandle.mm; path = Realm/RLMSyncSessionRefreshHandle.mm; sourceTree = "<group>"; };
 		2C12B594AA34FBC1529F01C5BE6AD1A5 /* ThreadSafeReference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThreadSafeReference.swift; path = RealmSwift/ThreadSafeReference.swift; sourceTree = "<group>"; };
+>>>>>>> master
 		2D5B335AF5AE41CB806CC07E5953CF52 /* Pods-ClipboardAppTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ClipboardAppTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2E6EF78E76B3F8F8852E02FC8F9F4F61 /* RLMObjectBase_Dynamic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMObjectBase_Dynamic.h; path = include/RLMObjectBase_Dynamic.h; sourceTree = "<group>"; };
 		2F277A7E325DAB2EC95A7C1FB9CD155B /* SideMenuInteractionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuInteractionController.swift; path = Pod/Classes/SideMenuInteractionController.swift; sourceTree = "<group>"; };
@@ -375,6 +388,28 @@
 		306C3F46B509998631BC55C0FCBE86F1 /* RLMRealmConfiguration_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMRealmConfiguration_Private.h; path = include/RLMRealmConfiguration_Private.h; sourceTree = "<group>"; };
 		30838F3D708A3BBF0EFADF3CC7EA1BC7 /* Aliases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Aliases.swift; path = RealmSwift/Aliases.swift; sourceTree = "<group>"; };
 		319D06AA0D1D0BA345459C039040A1ED /* SideMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SideMenu.framework; path = SideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+<<<<<<< HEAD
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		32C07BB26919DA3D202CE2AC9BF04570 /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
+		33CC549E65C239AD02AAD83FCF45BAAB /* Pods-ClipboardAppTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ClipboardAppTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3401AF655FBF3DC637F1EF00FDFA3F57 /* Pods-ClipboardAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ClipboardAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		3858BCECA532227798710237F95513B9 /* SideMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-prefix.pch"; sourceTree = "<group>"; };
+		400B1EC623B9FE7D45433FF3A8C430E9 /* SideMenuInteractionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuInteractionController.swift; path = Pod/Classes/SideMenuInteractionController.swift; sourceTree = "<group>"; };
+		4913528FB2CFF6B736E336655724EB8F /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
+		543B50C7A6B4F751883F1D67C1FDB667 /* Pods_ClipboardApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ClipboardApp.framework; path = "Pods-ClipboardApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		54C5102D228E15CD529F8BE0D8DC7E5F /* SideMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.debug.xcconfig; sourceTree = "<group>"; };
+		60989324F34C01133A542B62466E5E29 /* SideMenuTransitionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuTransitionController.swift; path = Pod/Classes/SideMenuTransitionController.swift; sourceTree = "<group>"; };
+		6101CB385365F6EB5FF1757D316E9900 /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
+		6325C0920C091EF3A7AD39027C9DA161 /* SideMenu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SideMenu-Info.plist"; sourceTree = "<group>"; };
+		64A91B060E8D280B39B7314CAD892802 /* Pods-ClipboardAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ClipboardAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6AA3190BD66777FBB845BB0F077B3D48 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
+		6E88E71B58B67C244BBDF0B8BAB235FA /* Pods-ClipboardApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ClipboardApp-frameworks.sh"; sourceTree = "<group>"; };
+		73A85C857E6BEEA23A4E439ADACA4FC3 /* SideMenuPresentationStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationStyle.swift; path = Pod/Classes/SideMenuPresentationStyle.swift; sourceTree = "<group>"; };
+		73C0341F436C13A448E29CFCD825F852 /* Pods-ClipboardApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ClipboardApp-umbrella.h"; sourceTree = "<group>"; };
+		7C10C7CD8BF15D02057BFA081E4BECB1 /* SideMenuManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuManager.swift; path = Pod/Classes/SideMenuManager.swift; sourceTree = "<group>"; };
+		85DA8703A79069BEDEC6E412C8F48FBD /* SideMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SideMenu.modulemap; sourceTree = "<group>"; };
+		93AAF459D7DDE027E627D8F5CF493852 /* Initializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Initializable.swift; path = Pod/Classes/Initializable.swift; sourceTree = "<group>"; };
+=======
 		33CC549E65C239AD02AAD83FCF45BAAB /* Pods-ClipboardAppTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ClipboardAppTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3401AF655FBF3DC637F1EF00FDFA3F57 /* Pods-ClipboardAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ClipboardAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		368BF82484720215F6BF52A6E892CB94 /* SideMenuPresentationStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationStyle.swift; path = Pod/Classes/SideMenuPresentationStyle.swift; sourceTree = "<group>"; };
@@ -455,6 +490,7 @@
 		961548DA613135D12125C845C4ED6639 /* RLMSyncSubscription.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMSyncSubscription.h; path = include/RLMSyncSubscription.h; sourceTree = "<group>"; };
 		96B93CDC0077B9ABD722C2A03D1F2E72 /* RLMSyncConfiguration_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMSyncConfiguration_Private.h; path = include/RLMSyncConfiguration_Private.h; sourceTree = "<group>"; };
 		96C5139871F5F62363C2A3CD528C0F8F /* Realm.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Realm.swift; path = RealmSwift/Realm.swift; sourceTree = "<group>"; };
+>>>>>>> master
 		974A2824B879514933D1C21F1E19341D /* Pods-ClipboardAppTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ClipboardAppTests.modulemap"; sourceTree = "<group>"; };
 		98BCB2725C318ED2232E08C6860909F4 /* partial_sync.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = partial_sync.cpp; path = Realm/ObjectStore/src/sync/partial_sync.cpp; sourceTree = "<group>"; };
 		998CFC41A2C5F65A365D43E804DB1B61 /* RLMSwiftSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RLMSwiftSupport.m; path = Realm/RLMSwiftSupport.m; sourceTree = "<group>"; };
@@ -466,6 +502,26 @@
 		9C983866C380CFA86758D2455224BBF7 /* Pods-ClipboardApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ClipboardApp-dummy.m"; sourceTree = "<group>"; };
 		9D7FA85C4820DE9E05CC0071196EDDEF /* Pods-ClipboardAppTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ClipboardAppTests-umbrella.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+<<<<<<< HEAD
+		A30AF107F41DF9BCE7542E428BE7C22D /* SideMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SideMenu-dummy.m"; sourceTree = "<group>"; };
+		A586A9BD25787BA4530F86D327AB6C48 /* SideMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-umbrella.h"; sourceTree = "<group>"; };
+		AD5C35F93B712109679456632B52198B /* Pods-ClipboardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ClipboardApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B1F94654F1D65B3EB600DBD90FFEB745 /* SideMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.release.xcconfig; sourceTree = "<group>"; };
+		B3C8D4BA2FE408295CC02C4C61EC4AE6 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
+		B5E0E3B402A6F5869A827A8BE36F5677 /* SideMenuPresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationController.swift; path = Pod/Classes/SideMenuPresentationController.swift; sourceTree = "<group>"; };
+		BA0F232CF59FDBBD2A7EC68E2E72C0B7 /* MGSwipeTableCell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-umbrella.h"; sourceTree = "<group>"; };
+		C3338C1A70A17D89904D7B230D1E62A8 /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewVibrantCell.swift; path = Pod/Classes/UITableViewVibrantCell.swift; sourceTree = "<group>"; };
+		C398136F4EE9C964B95476CDE621E4E5 /* Pods-ClipboardApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ClipboardApp-Info.plist"; sourceTree = "<group>"; };
+		C6401E18EFC611990593708E2DF63304 /* Print.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Print.swift; path = Pod/Classes/Print.swift; sourceTree = "<group>"; };
+		C6C927791554C31F48036BF0EA4EFF7D /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Pod/Classes/Extensions.swift; sourceTree = "<group>"; };
+		C6F12D306256987F3D5D9325361D3848 /* Pods-ClipboardAppTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ClipboardAppTests-Info.plist"; sourceTree = "<group>"; };
+		D7B2D5D38E7F481324D333F9328DF22B /* Pods_ClipboardAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ClipboardAppTests.framework; path = "Pods-ClipboardAppTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF5DD707CB4669A066A83FFFAB2E663A /* SideMenuPushCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPushCoordinator.swift; path = Pod/Classes/SideMenuPushCoordinator.swift; sourceTree = "<group>"; };
+		E5054507F08C69A108614B9CE98C322F /* MGSwipeTableCell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MGSwipeTableCell.modulemap; sourceTree = "<group>"; };
+		F17D3250AF27C30584919E14A585D6B5 /* MGSwipeTableCell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.release.xcconfig; sourceTree = "<group>"; };
+		F7AD607CF1A7351833C2F0B4CC9BA631 /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Pod/Classes/Deprecations.swift; sourceTree = "<group>"; };
+		F9C5FEF64B51A2EB37671B1FE012FFA4 /* Pods-ClipboardAppTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ClipboardAppTests-dummy.m"; sourceTree = "<group>"; };
+=======
 		9FEC37D95F4B2326D43B1E7B1811CC94 /* RLMSchema.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMSchema.mm; path = Realm/RLMSchema.mm; sourceTree = "<group>"; };
 		A0AB13123FFAE9BA052A575D9CB99A96 /* weak_realm_notifier.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = weak_realm_notifier.cpp; path = Realm/ObjectStore/src/impl/weak_realm_notifier.cpp; sourceTree = "<group>"; };
 		A25D8BF39192EE587AE755752C5C0820 /* keychain_helper.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = keychain_helper.cpp; path = Realm/ObjectStore/src/impl/apple/keychain_helper.cpp; sourceTree = "<group>"; };
@@ -535,9 +591,18 @@
 		FF41B80C9C69EC0AFFCD9358C2A06DA4 /* RLMObjectSchema_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMObjectSchema_Private.h; path = include/RLMObjectSchema_Private.h; sourceTree = "<group>"; };
 		FFAE06579739DEB4EAE11FBF05A27334 /* RLMSyncConfiguration.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMSyncConfiguration.mm; path = Realm/RLMSyncConfiguration.mm; sourceTree = "<group>"; };
 		FFBAE317D13EBBCB66D41E9D2662CE8F /* Migration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Migration.swift; path = RealmSwift/Migration.swift; sourceTree = "<group>"; };
+>>>>>>> master
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		06D98B2E3CCEEB67CBBF1FF4163CDB9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAA1975935AA61FCA940D13E6193EA11 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1247769D002DFC3D2A709C45FCCCEC47 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,6 +611,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
+		69281E0435C1928090C1DB92C92370A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC5E050386409004A0CD03B99D182707 /* Foundation.framework in Frameworks */,
+=======
 		57E714585194E469459E9A1FDA3471BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -569,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EE9B0FE9F585AB0397FF5D96B141832 /* Foundation.framework in Frameworks */,
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +656,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
+		2CADA2848A9590203014989F70E2CC78 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F7AD607CF1A7351833C2F0B4CC9BA631 /* Deprecations.swift */,
+				C6C927791554C31F48036BF0EA4EFF7D /* Extensions.swift */,
+				93AAF459D7DDE027E627D8F5CF493852 /* Initializable.swift */,
+				C6401E18EFC611990593708E2DF63304 /* Print.swift */,
+				22F7B182F92FF8DDE65741D79CF2FF88 /* Protected.swift */,
+				2559181D3FB2D8B873CD3E759D87C1E0 /* SideMenuAnimationController.swift */,
+				400B1EC623B9FE7D45433FF3A8C430E9 /* SideMenuInteractionController.swift */,
+				7C10C7CD8BF15D02057BFA081E4BECB1 /* SideMenuManager.swift */,
+				19DB02431EB341E745ACF5B5707E43D1 /* SideMenuNavigationController.swift */,
+				B5E0E3B402A6F5869A827A8BE36F5677 /* SideMenuPresentationController.swift */,
+				73A85C857E6BEEA23A4E439ADACA4FC3 /* SideMenuPresentationStyle.swift */,
+				DF5DD707CB4669A066A83FFFAB2E663A /* SideMenuPushCoordinator.swift */,
+				60989324F34C01133A542B62466E5E29 /* SideMenuTransitionController.swift */,
+				C3338C1A70A17D89904D7B230D1E62A8 /* UITableViewVibrantCell.swift */,
+				321082E3C61694D0112B371AC24D366E /* Support Files */,
+			);
+			name = SideMenu;
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		31761721DE31EEA8708584537E726BCA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25F18D1B6B5143BEF52BDC9EFD5CBE0A /* MGSwipeTableCell.framework */,
+				543B50C7A6B4F751883F1D67C1FDB667 /* Pods_ClipboardApp.framework */,
+				D7B2D5D38E7F481324D333F9328DF22B /* Pods_ClipboardAppTests.framework */,
+				319D06AA0D1D0BA345459C039040A1ED /* SideMenu.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		321082E3C61694D0112B371AC24D366E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				85DA8703A79069BEDEC6E412C8F48FBD /* SideMenu.modulemap */,
+				A30AF107F41DF9BCE7542E428BE7C22D /* SideMenu-dummy.m */,
+				6325C0920C091EF3A7AD39027C9DA161 /* SideMenu-Info.plist */,
+				3858BCECA532227798710237F95513B9 /* SideMenu-prefix.pch */,
+				A586A9BD25787BA4530F86D327AB6C48 /* SideMenu-umbrella.h */,
+				54C5102D228E15CD529F8BE0D8DC7E5F /* SideMenu.debug.xcconfig */,
+				B1F94654F1D65B3EB600DBD90FFEB745 /* SideMenu.release.xcconfig */,
+=======
 		02B813D953F24B256D3C473AF4268E31 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,6 +710,7 @@
 				7CCF1D7933A6FD049D09976DCF1269AD /* Realm-dummy.m */,
 				65F837BB865460A140CA7590D9A61728 /* Realm-Info.plist */,
 				5EEAB10BBE5CEDC08DDA092E1CEF2CAF /* Realm-prefix.pch */,
+>>>>>>> master
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Realm";
@@ -665,6 +785,34 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+		6C61803C9962E3D46C2C7716B4B7A69A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5054507F08C69A108614B9CE98C322F /* MGSwipeTableCell.modulemap */,
+				6101CB385365F6EB5FF1757D316E9900 /* MGSwipeTableCell-dummy.m */,
+				016D89C8950C3D2995A669A815BB82BE /* MGSwipeTableCell-Info.plist */,
+				32C07BB26919DA3D202CE2AC9BF04570 /* MGSwipeTableCell-prefix.pch */,
+				BA0F232CF59FDBBD2A7EC68E2E72C0B7 /* MGSwipeTableCell-umbrella.h */,
+				107687458354E75108C359F559543B7B /* MGSwipeTableCell.debug.xcconfig */,
+				F17D3250AF27C30584919E14A585D6B5 /* MGSwipeTableCell.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MGSwipeTableCell";
+			sourceTree = "<group>";
+		};
+		B65808879094CA18888A35E848ABB725 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				4913528FB2CFF6B736E336655724EB8F /* MGSwipeButton.h */,
+				1F9EFB78C6A716F9E804A7D6D917402A /* MGSwipeButton.m */,
+				6AA3190BD66777FBB845BB0F077B3D48 /* MGSwipeTableCell.h */,
+				B3C8D4BA2FE408295CC02C4C61EC4AE6 /* MGSwipeTableCell.m */,
+				6C61803C9962E3D46C2C7716B4B7A69A /* Support Files */,
+			);
+			name = MGSwipeTableCell;
+			path = MGSwipeTableCell;
+=======
 		561C918E4B87ACF784550470CCF97278 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -804,6 +952,7 @@
 			);
 			name = Realm;
 			path = Realm;
+>>>>>>> master
 			sourceTree = "<group>";
 		};
 		C06E7CEA6ECEAB921A3501B72C303618 /* Pods-ClipboardAppTests */ = {
@@ -835,9 +984,15 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+<<<<<<< HEAD
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				DF3C914F612AFFB20B1E4A8846A8A3E0 /* Pods */,
+				31761721DE31EEA8708584537E726BCA /* Products */,
+=======
 				CE977EB726C9F96C37B42D71E9B97392 /* Frameworks */,
 				375F34A0501E2AC69F80C279752509F7 /* Pods */,
 				05FAD50B23932046C1BA5D2BC98DB1C4 /* Products */,
+>>>>>>> master
 				47FD449B85DFB8B41DE6BEA1510272A0 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -894,6 +1049,15 @@
 			path = "Target Support Files/Pods-ClipboardApp";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+		DF3C914F612AFFB20B1E4A8846A8A3E0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B65808879094CA18888A35E848ABB725 /* MGSwipeTableCell */,
+				2CADA2848A9590203014989F70E2CC78 /* SideMenu */,
+			);
+			name = Pods;
+=======
 		E783F2C22640A5BA2AE47B6BB90DC36B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,6 +1079,7 @@
 				E656B77F929C44751FDD2A3B421DE452 /* Security.framework */,
 			);
 			name = iOS;
+>>>>>>> master
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -944,6 +1109,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
+		BB3F87B7EDD2147DF1103AC55F074822 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CAD4E12A9138693CBE20D2FF756F0EE /* Pods-ClipboardApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEB722E982F4E193D0A5D5AFF613EEB6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3E69CBEA5E32217C99B45F6825C639 /* MGSwipeButton.h in Headers */,
+				2C48A1C2DAFD9D771F4BB66E3C3BBDAD /* MGSwipeTableCell-umbrella.h in Headers */,
+				BF617D8D48E8FE6C8E591A5F74BB08B2 /* MGSwipeTableCell.h in Headers */,
+=======
 		4E954C2C89F4D7F2A9EDEBD0462591E3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1000,27 +1182,60 @@
 				3820FCCABF659770A7A74440C3001C87 /* RLMSyncUtil.h in Headers */,
 				BF08EB397775EFE40ABE7B19BA55B672 /* RLMSyncUtil_Private.h in Headers */,
 				A3F37516CDD7B7C6E9E67F7937775CB8 /* RLMThreadSafeReference.h in Headers */,
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		1EEB7FC8FC3DC62BFD58C64EF0EDFF4B /* MGSwipeTableCell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 637C659EB46A59E3637622E6D2CE6064 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
+			buildPhases = (
+				DEB722E982F4E193D0A5D5AFF613EEB6 /* Headers */,
+				79821126EDC52DEB1F43C0485A6C5785 /* Sources */,
+				06D98B2E3CCEEB67CBBF1FF4163CDB9F /* Frameworks */,
+				BA51798E0800A86EB6B6AA12D8C67DF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MGSwipeTableCell;
+			productName = MGSwipeTableCell;
+			productReference = 25F18D1B6B5143BEF52BDC9EFD5CBE0A /* MGSwipeTableCell.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		496068AC948FB1CD701F5E5C78229805 /* Pods-ClipboardApp */ = {
 			isa = PBXNativeTarget;
+<<<<<<< HEAD
+			buildConfigurationList = 61E0751A637D26A086102991E635B3E7 /* Build configuration list for PBXNativeTarget "Pods-ClipboardApp" */;
+			buildPhases = (
+				BB3F87B7EDD2147DF1103AC55F074822 /* Headers */,
+				CB14CAB4D79AB396747724979208009B /* Sources */,
+				69281E0435C1928090C1DB92C92370A0 /* Frameworks */,
+				97D7CBCD247F5E7F3CBE0CE12D075669 /* Resources */,
+=======
 			buildConfigurationList = 64A061A2CECD88F7D7ABE7DCA5AAFDCA /* Build configuration list for PBXNativeTarget "Pods-ClipboardApp" */;
 			buildPhases = (
 				4E954C2C89F4D7F2A9EDEBD0462591E3 /* Headers */,
 				76D380E42F6968B6B7C6ED223B04CE3F /* Sources */,
 				A0C70D32487004BEB29594118A698F95 /* Frameworks */,
 				87CF6983C4F3B5B67E67C338658B3F83 /* Resources */,
+>>>>>>> master
 			);
 			buildRules = (
 			);
 			dependencies = (
+<<<<<<< HEAD
+				07C8A32146782167D1D77DFF15BF733D /* PBXTargetDependency */,
+				0C7F77E7A916DC12B338B21942FC0D2E /* PBXTargetDependency */,
+=======
 				0B60E136C87C385270296A3B0BD0D14F /* PBXTargetDependency */,
 				A269529E8A39AB6BEBE82E76A3DAF8D3 /* PBXTargetDependency */,
 				FDEE9973E840B4B763304AA59DD6D892 /* PBXTargetDependency */,
+>>>>>>> master
 			);
 			name = "Pods-ClipboardApp";
 			productName = "Pods-ClipboardApp";
@@ -1121,10 +1336,15 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+<<<<<<< HEAD
+			productRefGroup = 31761721DE31EEA8708584537E726BCA /* Products */;
+=======
 			productRefGroup = 05FAD50B23932046C1BA5D2BC98DB1C4 /* Products */;
+>>>>>>> master
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				1EEB7FC8FC3DC62BFD58C64EF0EDFF4B /* MGSwipeTableCell */,
 				496068AC948FB1CD701F5E5C78229805 /* Pods-ClipboardApp */,
 				769B3EF53A0BE69D568353BA815404B5 /* Pods-ClipboardAppTests */,
 				68494F30B4A13F8E5E88BCCAEC25B0A4 /* Realm */,
@@ -1135,14 +1355,25 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+<<<<<<< HEAD
+		6F9FBACD887DBD83750F836009B70FD7 /* Resources */ = {
+=======
 		13B653C20CC1D0B28162EEB3B2D27AE7 /* Resources */ = {
+>>>>>>> master
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6F9FBACD887DBD83750F836009B70FD7 /* Resources */ = {
+		97D7CBCD247F5E7F3CBE0CE12D075669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA51798E0800A86EB6B6AA12D8C67DF4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1173,6 +1404,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+<<<<<<< HEAD
+		79821126EDC52DEB1F43C0485A6C5785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				417B339CEE0C6B0D8FB3100CBBF26DE7 /* MGSwipeButton.m in Sources */,
+				D14CE1CECE72F578FCD258AEFBA0D3DD /* MGSwipeTableCell-dummy.m in Sources */,
+				6D1F9C8E2F6DAA72DC6B55ED0CDEF5EF /* MGSwipeTableCell.m in Sources */,
+=======
 		02332DDABEC84D721F48118D5F43BFAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1292,6 +1532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84CED124CBC896B218DEDCA37B8C8DF8 /* Pods-ClipboardApp-dummy.m in Sources */,
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1317,6 +1558,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB14CAB4D79AB396747724979208009B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				460984C5672761FA96989E9C076BB4F5 /* Pods-ClipboardApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+<<<<<<< HEAD
 		F3C734DE5D023DC9FE6D4A909337D9FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1328,6 +1578,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07C8A32146782167D1D77DFF15BF733D /* PBXTargetDependency */ = {
+=======
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
 		0B60E136C87C385270296A3B0BD0D14F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Realm;
@@ -1335,11 +1590,25 @@
 			targetProxy = 2A4FF7DD978A6014EB1C092390AC8B82 /* PBXContainerItemProxy */;
 		};
 		0D0262B8622988D8CD15557C477AB382 /* PBXTargetDependency */ = {
+>>>>>>> master
+			isa = PBXTargetDependency;
+			name = MGSwipeTableCell;
+			target = 1EEB7FC8FC3DC62BFD58C64EF0EDFF4B /* MGSwipeTableCell */;
+			targetProxy = 437EDBD2E5868426D2DE2FC98F3DD846 /* PBXContainerItemProxy */;
+		};
+<<<<<<< HEAD
+		0C7F77E7A916DC12B338B21942FC0D2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SideMenu;
+			target = C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */;
+			targetProxy = 9DE94E63200D20BF44B23EC05D78DA36 /* PBXContainerItemProxy */;
+		};
+		0D0262B8622988D8CD15557C477AB382 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-ClipboardApp";
 			target = 496068AC948FB1CD701F5E5C78229805 /* Pods-ClipboardApp */;
 			targetProxy = A63E861650313ABB6C16A3A9DFDE8094 /* PBXContainerItemProxy */;
-		};
+=======
 		A269529E8A39AB6BEBE82E76A3DAF8D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RealmSwift;
@@ -1357,6 +1626,7 @@
 			name = SideMenu;
 			target = C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */;
 			targetProxy = AB9E72CBE21C2904D26416FA807149A1 /* PBXContainerItemProxy */;
+>>>>>>> master
 		};
 /* End PBXTargetDependency section */
 
@@ -1423,7 +1693,11 @@
 		};
 		3DE2C4A3A68C76D798374D77D7644459 /* Debug */ = {
 			isa = XCBuildConfiguration;
+<<<<<<< HEAD
+			baseConfigurationReference = B1F94654F1D65B3EB600DBD90FFEB745 /* SideMenu.release.xcconfig */;
+=======
 			baseConfigurationReference = EB581C12168C6DE6AA97201B0D7AE2BB /* RealmSwift.xcconfig */;
+>>>>>>> master
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1492,6 +1766,46 @@
 			};
 			name = Release;
 		};
+<<<<<<< HEAD
+		1DBC965B398427197F5C7F61A9AE185C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 107687458354E75108C359F559543B7B /* MGSwipeTableCell.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell.modulemap";
+				PRODUCT_MODULE_NAME = MGSwipeTableCell;
+				PRODUCT_NAME = MGSwipeTableCell;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		45B6D36435972CBBC59A481A20E44C4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54C5102D228E15CD529F8BE0D8DC7E5F /* SideMenu.debug.xcconfig */;
+=======
 		76B04784E199F9E057C51FBC85B40AF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C5B6F069087DF612BF1533A8A2CA7F21 /* Realm.xcconfig */;
@@ -1530,6 +1844,7 @@
 		770B68DA9F16B41CD7CDCD9737A856A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AC259E450AD30DCB471D6D2498FF0E6 /* SideMenu.xcconfig */;
+>>>>>>> master
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1564,7 +1879,11 @@
 			};
 			name = Release;
 		};
+<<<<<<< HEAD
+		B927F3FA750B49AF13971A2CDA80B503 /* Debug */ = {
+=======
 		8AA23D78597F412BA944969C9588BDC8 /* Release */ = {
+>>>>>>> master
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E83EE0A8FC3AE3B7B26DF71B2D9AA24 /* Pods-ClipboardApp.release.xcconfig */;
 			buildSettings = {
@@ -1639,12 +1958,16 @@
 			};
 			name = Debug;
 		};
+<<<<<<< HEAD
+		BC42D3AC6BB5E2E8454988C1A0659390 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F17D3250AF27C30584919E14A585D6B5 /* MGSwipeTableCell.release.xcconfig */;
+=======
 		CAEA7F12D40FBA4547FF2C4A88B5B1E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3401AF655FBF3DC637F1EF00FDFA3F57 /* Pods-ClipboardAppTests.release.xcconfig */;
+>>>>>>> master
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1654,14 +1977,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+<<<<<<< HEAD
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-Info.plist";
+=======
 				INFOPLIST_FILE = "Target Support Files/Pods-ClipboardAppTests/Pods-ClipboardAppTests-Info.plist";
+>>>>>>> master
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+<<<<<<< HEAD
+				MODULEMAP_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell.modulemap";
+				PRODUCT_MODULE_NAME = MGSwipeTableCell;
+				PRODUCT_NAME = MGSwipeTableCell;
+=======
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ClipboardAppTests/Pods-ClipboardAppTests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1669,8 +2002,11 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+>>>>>>> master
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1818,10 +2154,19 @@
 			};
 			name = Debug;
 		};
+<<<<<<< HEAD
+		F7B4A68DDEA251DD64C5AD07DDC93B2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E83EE0A8FC3AE3B7B26DF71B2D9AA24 /* Pods-ClipboardApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+=======
 		F86F5AA5D94340F9BF0508955C1D75C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB581C12168C6DE6AA97201B0D7AE2BB /* RealmSwift.xcconfig */;
 			buildSettings = {
+>>>>>>> master
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1831,15 +2176,32 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+<<<<<<< HEAD
+				INFOPLIST_FILE = "Target Support Files/Pods-ClipboardApp/Pods-ClipboardApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+=======
 				GCC_PREFIX_HEADER = "Target Support Files/RealmSwift/RealmSwift-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/RealmSwift/RealmSwift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+>>>>>>> master
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+<<<<<<< HEAD
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ClipboardApp/Pods-ClipboardApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+=======
 				MODULEMAP_FILE = "Target Support Files/RealmSwift/RealmSwift.modulemap";
 				PRODUCT_MODULE_NAME = RealmSwift;
 				PRODUCT_NAME = RealmSwift;
@@ -1847,6 +2209,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
+>>>>>>> master
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1866,20 +2229,37 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		267AFAAD296C8EF14F0A0C6ECBB2627A /* Build configuration list for PBXNativeTarget "Pods-ClipboardAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E5B7B7C55EFF861D5A42D0EF108702C9 /* Debug */,
-				CAEA7F12D40FBA4547FF2C4A88B5B1E5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+<<<<<<< HEAD
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED7888FA6713EABBF66D26A8003AD1CA /* Debug */,
 				1422B121EAEAEA11307496903FA623C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61E0751A637D26A086102991E635B3E7 /* Build configuration list for PBXNativeTarget "Pods-ClipboardApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B927F3FA750B49AF13971A2CDA80B503 /* Debug */,
+				F7B4A68DDEA251DD64C5AD07DDC93B2C /* Release */,
+=======
+		267AFAAD296C8EF14F0A0C6ECBB2627A /* Build configuration list for PBXNativeTarget "Pods-ClipboardAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5B7B7C55EFF861D5A42D0EF108702C9 /* Debug */,
+				CAEA7F12D40FBA4547FF2C4A88B5B1E5 /* Release */,
+>>>>>>> master
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		637C659EB46A59E3637622E6D2CE6064 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DBC965B398427197F5C7F61A9AE185C /* Debug */,
+				BC42D3AC6BB5E2E8454988C1A0659390 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
