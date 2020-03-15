@@ -1,20 +1,30 @@
 PODS:
   - MGSwipeTableCell (1.6.11)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
   - SideMenu (6.4.7)
 
 DEPENDENCIES:
   - MGSwipeTableCell
+  - RealmSwift
   - SideMenu
 
 SPEC REPOS:
   trunk:
     - MGSwipeTableCell
+    - Realm
+    - RealmSwift
     - SideMenu
 
 SPEC CHECKSUMS:
   MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
 
-PODFILE CHECKSUM: 719707f98bf205a46ed58642931d62d44b5b9692
+PODFILE CHECKSUM: 840b47041927707e3ae44398c9fb746a6113273c
 
 COCOAPODS: 1.8.4

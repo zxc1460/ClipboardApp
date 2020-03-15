@@ -7,11 +7,9 @@ target 'ClipboardApp' do
 
   # Pods for ClipboardApp
   pod 'SideMenu'
-<<<<<<< HEAD
   pod 'MGSwipeTableCell'
-=======
   pod ‘RealmSwift’
->>>>>>> master
+
   target 'ClipboardAppTests' do
     inherit! :search_paths
     # Pods for testing

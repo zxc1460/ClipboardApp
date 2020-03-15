@@ -14,7 +14,6 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-<<<<<<< HEAD
 			<string>The MIT License (MIT)
 
 Copyright (c) 2018 Imanol Fernandez @MortimerGoro
@@ -41,7 +40,11 @@ SOFTWARE.
 			<string>MIT</string>
 			<key>Title</key>
 			<string>MGSwipeTableCell</string>
-=======
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>TABLE OF CONTENTS
 
 1. Apache License version 2.0
@@ -553,7 +556,6 @@ regulations.
 			<string>Apache 2.0</string>
 			<key>Title</key>
 			<string>RealmSwift</string>
->>>>>>> master
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

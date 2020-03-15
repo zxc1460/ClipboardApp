@@ -14,7 +14,7 @@ import RealmSwift
 class MainViewController: UIViewController {
     
     let colorTagRGB = [
-        UIColor.colorWithRGBHex(hex: 0xdbacfc), // pupple
+        UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
         UIColor.colorWithRGBHex(hex: 0x82c5ff), // blue
         UIColor.colorWithRGBHex(hex: 0x0aeb99), // green
         UIColor.colorWithRGBHex(hex: 0xf5d442), // yellow
@@ -131,8 +131,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
         
         cell.colorTag.tintColor = .white
+        cell.copyBtn.tag = indexPath.row
+        cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
         
         let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red)
+        
         var colorTagBtns : [MGSwipeButton] = [delBtn]
         
         for color in self.colorTagRGB {
@@ -161,6 +164,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        code
 //    }
+    
+    @objc func copyText(_ sender: UIButton) {
+        if let item = items?[sender.tag] {
+            UIPasteboard.general.string = item.copiedText
+        }
+    }
+    
+    
 }
 
 

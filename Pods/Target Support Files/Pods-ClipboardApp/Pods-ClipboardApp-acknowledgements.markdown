@@ -1,7 +1,6 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-<<<<<<< HEAD
 ## MGSwipeTableCell
 
 The MIT License (MIT)
@@ -25,7 +24,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-=======
+
+
 ## Realm
 
 TABLE OF CONTENTS
@@ -528,7 +528,6 @@ the United States or other applicable countries. You also agree not to transfer,
 or authorize the transfer of, directly or indirectly, of the Software to any
 Prohibited Jurisdiction, or otherwise in violation of any such restrictions or
 regulations.
->>>>>>> master
 
 
 ## SideMenu
