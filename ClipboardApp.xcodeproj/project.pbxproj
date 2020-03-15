@@ -18,6 +18,8 @@
 		AFB4950024149E1600C92D0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB494FE24149E1600C92D0E /* LaunchScreen.storyboard */; };
 		AFB4950B24149E1600C92D0E /* ClipboardAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB4950A24149E1600C92D0E /* ClipboardAppTests.swift */; };
 		FA930230241A6FFC00B9B405 /* ClipboardCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */; };
+		FF4BA07A241E6281004CF912 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4BA079241E6281004CF912 /* SideMenuViewController.swift */; };
+		FF4BA07C241E62E2004CF912 /* SideMenuCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4BA07B241E62E2004CF912 /* SideMenuCustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		E2B87C93C7F10DC6E807572F /* Pods-ClipboardAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipboardAppTests.release.xcconfig"; path = "Target Support Files/Pods-ClipboardAppTests/Pods-ClipboardAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D7E3FFF7B00203CAC13331 /* Pods-ClipboardApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipboardApp.release.xcconfig"; path = "Target Support Files/Pods-ClipboardApp/Pods-ClipboardApp.release.xcconfig"; sourceTree = "<group>"; };
 		FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardCustomCell.swift; sourceTree = "<group>"; };
+		FF4BA079241E6281004CF912 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		FF4BA07B241E62E2004CF912 /* SideMenuCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 				AFB494F324149E1500C92D0E /* AppDelegate.swift */,
 				AFB494F524149E1500C92D0E /* SceneDelegate.swift */,
 				AFB494F724149E1500C92D0E /* MainViewController.swift */,
+				FF4BA079241E6281004CF912 /* SideMenuViewController.swift */,
+				FF4BA07B241E62E2004CF912 /* SideMenuCustomCell.swift */,
 				FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */,
 				AFB494F924149E1500C92D0E /* Main.storyboard */,
 				AFB494FC24149E1600C92D0E /* Assets.xcassets */,
@@ -317,6 +323,8 @@
 				AFB494F824149E1500C92D0E /* MainViewController.swift in Sources */,
 				AFB494F424149E1500C92D0E /* AppDelegate.swift in Sources */,
 				AFB494F624149E1500C92D0E /* SceneDelegate.swift in Sources */,
+				FF4BA07A241E6281004CF912 /* SideMenuViewController.swift in Sources */,
+				FF4BA07C241E62E2004CF912 /* SideMenuCustomCell.swift in Sources */,
 				FA930230241A6FFC00B9B405 /* ClipboardCustomCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
