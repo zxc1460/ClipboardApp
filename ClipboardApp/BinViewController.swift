@@ -39,14 +39,14 @@ class BinViewController: UIViewController {
         self.realm = try! Realm()
         self.items = realm?.objects(ClipModel.self)
         
-        
-        //  let oddArray = array.filter( { (value: Int) -> Bool in return (value % 2 == 0) } ) : 참고 코드
+        self.navigationItem.title = "휴지통"
+
         guard let items = self.items else {
             print("items is empty")
             self.binArray = nil
+            return
         }
-        
-        let binArray = items.filter( { (item: ClipModel) -> Bool in return (item.isDeleted == true) })
+        let binArray = items.filter("isDeleted == true")
         self.binArray = binArray
     }
 
