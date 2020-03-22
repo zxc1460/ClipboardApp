@@ -6,11 +6,13 @@ PODS:
   - RealmSwift (4.3.2):
     - Realm (= 4.3.2)
   - SideMenu (6.4.7)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - MGSwipeTableCell
   - RealmSwift
   - SideMenu
+  - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
@@ -18,13 +20,15 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SideMenu
+    - SnapKit
 
 SPEC CHECKSUMS:
   MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
   Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 840b47041927707e3ae44398c9fb746a6113273c
+PODFILE CHECKSUM: abd7331cfb0eca4fa7527aaa7c556915c8bc518e
 
 COCOAPODS: 1.8.4

@@ -79,6 +79,15 @@ class MainViewController: UIViewController {
         self.clipsTableView?.reloadData()
     }
     
+    @objc func colorTagTouched() {
+        
+        
+        
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,6 +124,9 @@ class MainViewController: UIViewController {
 
 }
 
+
+
+
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     
@@ -131,9 +143,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
+        // MGSwiftTableCell 상속받아 커스터 마이징 하면 버튼들에 액션을 못준다?
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
         
-        cell.colorTag.tintColor = .white
+        cell.colorTag.tintColor = .white // item.tagColor
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
         
@@ -141,14 +154,15 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         var colorTagBtns : [MGSwipeButton] = [delBtn]
         
+        let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor)
         for color in self.colorTagRGB {
-            let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor)
+            
             
             colorTagBtn.tintColor = color
 //            colorTagBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
-//            colorTagBtn.addTarget(self, action: #selector(colorTagButtonClicked), for: .touchUpInside)
+            
             colorTagBtns.append(colorTagBtn)
-//            colorTagBtn.isSelected = true
+            
         }
         
         delBtn.buttonWidth = UIScreen.main.bounds.width / 6
@@ -175,7 +189,21 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
+    
+    
 }
+
+//extension MainViewController: MGSwipeTableCellDelegate {
+//
+//    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+//
+//
+//
+//
+//
+//    }
+//}
+
 
 
 
