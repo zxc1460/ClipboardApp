@@ -13,6 +13,15 @@ import RealmSwift
 
 class MainViewController: UIViewController {
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getCopiedText), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     let colorTagRGB = [
         UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
         UIColor.colorWithRGBHex(hex: 0x82c5ff), // blue
@@ -25,58 +34,51 @@ class MainViewController: UIViewController {
     // 스토리보드 상에서 네비게이션바 아이템으로 사이드 메뉴 네비게이션 컨트롤러가 안띄어지네요.. 그래서 코드상으로 했습니다.
     let sideMenu = SideMenuNavigationController(rootViewController: SideMenuViewController())
 
-    
-    // realm과 데이터모델 변수
-    var realm: Realm?
     var items: Results<ClipModel>?
-    
-    
     
     @IBOutlet var clipsTableView : UITableView?
     @objc func sideMenuButtonClicked(_ sender: UIBarButtonItem) {
         present(sideMenu, animated: true, completion: nil)
     }
-
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //앱이 백그라운드에서 포그라운드로 돌아올 때 카피된 것이 있는지 확인하고 가져오기.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.getCopiedText), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //뷰가 사라지면 노티피케이션 제거
-        NotificationCenter.default.removeObserver(self)
-    }
     
     
     // 카피된 내용 가져오는 함수
     @objc func getCopiedText() {
-        if let str = UIPasteboard.general.string {
-            print("정상적으로 복사됨 텍스트: \(str)")
-            var flag: Bool = true
-            if let arr = items {
-                for item in arr {
-                    if item.copiedText == str {
-                        flag = false
-                        break
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                let realm = try! Realm()
+                if let str = UIPasteboard.general.string {
+                    var flag: Bool = true
+                    let arr = realm.objects(ClipModel.self)
+                    for item in arr {
+                        if item.copiedText == str {
+                            flag = false
+                            break
+                        }
                     }
+                    if flag {
+                        let newClip = ClipModel()
+                        newClip.copiedText = str
+                        
+                        try! realm.write {
+                            realm.add(newClip)
+                        }
+                    }
+                    
+                    print("data insert done")
+                       
                 }
+                self.asyncReloadData()
             }
-            
-            if flag {
-                let newClip = ClipModel()
-                newClip.copiedText = str
-                
-                try! realm?.write {
-                    realm?.add(newClip)
-                }
-            }
-            
         }
-        
-        self.clipsTableView?.reloadData()
+    }
+    
+    func asyncReloadData() {
+        DispatchQueue.main.async {
+            self.clipsTableView?.reloadData()
+            
+            print("reload data done")
+        }
     }
     
     @objc func colorTagTouched() {
@@ -115,9 +117,8 @@ class MainViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftButton
         
         // realm 초기화, 저장 데이터 가져오기
-        realm = try! Realm()
-        items = realm?.objects(ClipModel.self)
-        
+        let realm = try! Realm()
+        self.items = realm.objects(ClipModel.self)
 
     }
     
