@@ -14,11 +14,11 @@ import RealmSwift
 class MainViewController: UIViewController {
     
     let colorTagRGB = [
-        UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
-        UIColor.colorWithRGBHex(hex: 0x82c5ff), // blue
-        UIColor.colorWithRGBHex(hex: 0x0aeb99), // green
-        UIColor.colorWithRGBHex(hex: 0xf5d442), // yellow
         UIColor.colorWithRGBHex(hex: 0xff8a78), // red
+        UIColor.colorWithRGBHex(hex: 0xf5d442), // yellow
+        UIColor.colorWithRGBHex(hex: 0x0aeb99), // green
+        UIColor.colorWithRGBHex(hex: 0x82c5ff), // blue
+        UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
     ]
     let swipeBtnBgColor = UIColor.colorWithRGBHex(hex: 0xe6e6e6)
     
@@ -94,7 +94,7 @@ class MainViewController: UIViewController {
         sideMenu.presentationStyle = .viewSlideOutMenuIn
         sideMenu.statusBarEndAlpha = 0
         sideMenu.navigationBar.isHidden = true
-        
+        sideMenu.menuWidth = 290
         
         navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
@@ -133,26 +133,59 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
         
+        
+        
         cell.colorTag.tintColor = .white
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
         
-        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red)
+        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red, callback: {
+            (sender: MGSwipeTableCell!) -> Bool in
+            try! self.realm?.write {
+                item.copiedText = "deleted"
+                tableView.reloadData()
+            }
+            return true
+        })
         
-        var colorTagBtns : [MGSwipeButton] = [delBtn]
+        var colorTagBtns : [MGSwipeButton] = []
         
-        for color in self.colorTagRGB {
-            let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor)
-            
+        var colorIndex = 1
+        for (index, color) in (self.colorTagRGB).enumerated() {
+            let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor, callback: {
+                (sender: MGSwipeTableCell!) -> Bool in
+                try! self.realm?.write {
+                    item.copiedText = String(index)
+                }
+                
+                colorIndex = index
+                
+                tableView.reloadData()
+                return true
+            })
+            colorTagBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
             colorTagBtn.tintColor = color
-//            colorTagBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
-//            colorTagBtn.addTarget(self, action: #selector(colorTagButtonClicked), for: .touchUpInside)
+            
             colorTagBtns.append(colorTagBtn)
-//            colorTagBtn.isSelected = true
         }
         
+        for btn in colorTagBtns {
+            btn.backgroundColor = self.swipeBtnBgColor
+            btn.isSelected = false
+        }
+        
+        
+        colorTagBtns[colorIndex].backgroundColor = self.colorTagRGB[colorIndex]
+        colorTagBtns[colorIndex].tintColor = self.swipeBtnBgColor
+        colorTagBtns[colorIndex].isSelected = true
+        cell.colorTag.tintColor = self.colorTagRGB[colorIndex]
+        
+        
         delBtn.buttonWidth = UIScreen.main.bounds.width / 6
+        colorTagBtns.append(delBtn)
+        colorTagBtns.reverse()
         cell.rightButtons = colorTagBtns
+        
         
         cell.contextLabel.text = item.copiedText
         
