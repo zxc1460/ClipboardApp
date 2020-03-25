@@ -12,5 +12,5 @@ import RealmSwift
 class ClipModel: Object {
     
     @objc dynamic var isDeleted: Bool = false
-    @objc dynamic var copiedText = ""
+    @objc dynamic var copiedText: String = ""
 }
