@@ -14,11 +14,11 @@ import RealmSwift
 class MainViewController: UIViewController {
     
     let colorTagRGB = [
-        UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
-        UIColor.colorWithRGBHex(hex: 0x82c5ff), // blue
-        UIColor.colorWithRGBHex(hex: 0x0aeb99), // green
-        UIColor.colorWithRGBHex(hex: 0xf5d442), // yellow
         UIColor.colorWithRGBHex(hex: 0xff8a78), // red
+        UIColor.colorWithRGBHex(hex: 0xf5d442), // yellow
+        UIColor.colorWithRGBHex(hex: 0x0aeb99), // green
+        UIColor.colorWithRGBHex(hex: 0x82c5ff), // blue
+        UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
     ]
     let swipeBtnBgColor = UIColor.colorWithRGBHex(hex: 0xe6e6e6)
     
@@ -68,7 +68,7 @@ class MainViewController: UIViewController {
             if flag {
                 let newClip = ClipModel()
                 newClip.copiedText = str
-                
+                newClip.color = -1
                 try! realm?.write {
                     realm?.add(newClip)
                 }
@@ -94,7 +94,7 @@ class MainViewController: UIViewController {
         sideMenu.presentationStyle = .viewSlideOutMenuIn
         sideMenu.statusBarEndAlpha = 0
         sideMenu.navigationBar.isHidden = true
-        
+        sideMenu.menuWidth = 290
         
         navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
@@ -107,7 +107,7 @@ class MainViewController: UIViewController {
         
         // realm 초기화, 저장 데이터 가져오기
         realm = try! Realm()
-        items = realm?.objects(ClipModel.self)
+        items = realm?.objects(ClipModel.self).filter("isDeleted == false")
         
 
     }
@@ -133,25 +133,63 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
         
+        
+        
         cell.colorTag.tintColor = .white
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
         
-        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red)
+        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red, callback: {
+            (sender: MGSwipeTableCell!) -> Bool in
+            try! self.realm?.write {
+                item.isDeleted = true
+            }
+            tableView.reloadData()
+            return true
+        })
         
-        var colorTagBtns : [MGSwipeButton] = [delBtn]
+        var colorTagBtns : [MGSwipeButton] = []
         
-        for color in self.colorTagRGB {
-            let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor)
+        
+        let colorIndex = item.color
+        for (index, color) in (self.colorTagRGB).enumerated() {
+            let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor, callback: {
+                (sender: MGSwipeTableCell!) -> Bool in
+                try! self.realm?.write {
+                    if item.color == index {
+                        item.color = -1
+                    }
+                    else {
+                        item.color = index
+                    }
+                }
             
+                tableView.reloadData()
+                
+                return true
+            })
+            colorTagBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
             colorTagBtn.tintColor = color
-//            colorTagBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
-//            colorTagBtn.addTarget(self, action: #selector(colorTagButtonClicked), for: .touchUpInside)
+            colorTagBtn.backgroundColor = self.swipeBtnBgColor
+            colorTagBtn.isSelected = false
+            
             colorTagBtns.append(colorTagBtn)
-//            colorTagBtn.isSelected = true
         }
         
+        
+        
+//        선택된 color tag 없으면 pass
+        if colorIndex != -1 {
+            colorTagBtns[colorIndex].backgroundColor = .white
+            colorTagBtns[colorIndex].isSelected = true
+            cell.colorTag.tintColor = self.colorTagRGB[colorIndex]
+        }
+        
+        
+        
         delBtn.buttonWidth = UIScreen.main.bounds.width / 6
+        colorTagBtns.append(delBtn)
+        colorTagBtns.reverse()
         cell.rightButtons = colorTagBtns
         
         cell.contextLabel.text = item.copiedText
