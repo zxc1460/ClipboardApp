@@ -105,7 +105,7 @@ class MainViewController: UIViewController {
         sideMenu.presentationStyle = .viewSlideOutMenuIn
         sideMenu.statusBarEndAlpha = 0
         sideMenu.navigationBar.isHidden = true
-        sideMenu.menuWidth = 290
+        sideMenu.menuWidth = 270
         
         navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
@@ -117,9 +117,9 @@ class MainViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftButton
         
         // realm 초기화, 저장 데이터 가져오기
-        realm = try! Realm()
-        items = realm?.objects(ClipModel.self).filter("isDeleted == false")
-        
+    
+        let realm = try! Realm()
+        self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
 
     }
     
@@ -154,23 +154,28 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
         
+        var colorTagBtns : [MGSwipeButton] = []
+        
+//        delete button
         let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red, callback: {
             (sender: MGSwipeTableCell!) -> Bool in
-            try! self.realm?.write {
+            let realm = try! Realm()
+            try! realm.write {
                 item.isDeleted = true
             }
             tableView.reloadData()
             return true
         })
         
-        var colorTagBtns : [MGSwipeButton] = []
-        
         
         let colorIndex = item.color
+        
         for (index, color) in (self.colorTagRGB).enumerated() {
             let colorTagBtn = MGSwipeButton(title : "", icon:UIImage(systemName: "circle.fill"), backgroundColor: self.swipeBtnBgColor, callback: {
                 (sender: MGSwipeTableCell!) -> Bool in
-                try! self.realm?.write {
+                let realm = try! Realm()
+                try! realm.write {
+                    
                     if item.color == index {
                         item.color = -1
                     }
@@ -180,9 +185,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             
                 tableView.reloadData()
-                
                 return true
+                
             })
+            
             colorTagBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
             colorTagBtn.tintColor = color
             colorTagBtn.backgroundColor = self.swipeBtnBgColor
@@ -193,8 +199,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         
-//        선택된 color tag 없으면 pass
-        if colorIndex != -1 {
+
+        if colorIndex != -1 { // 선택된 color tag 없으면 pass
             colorTagBtns[colorIndex].backgroundColor = .white
             colorTagBtns[colorIndex].isSelected = true
             cell.colorTag.tintColor = self.colorTagRGB[colorIndex]
@@ -204,7 +210,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         delBtn.buttonWidth = UIScreen.main.bounds.width / 6
         colorTagBtns.append(delBtn)
-        colorTagBtns.reverse()
+        colorTagBtns.reverse() // 쌓인 순서 바꿔주기 <-
         cell.rightButtons = colorTagBtns
         
         cell.contextLabel.text = item.copiedText
