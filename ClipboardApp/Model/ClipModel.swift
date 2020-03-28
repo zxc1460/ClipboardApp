@@ -9,8 +9,23 @@
 import Foundation
 import RealmSwift
 
+//enum ColorTag : Int{
+//    case non = -1, red = 0, yellow, green, blue, purple
+//}
+
 class ClipModel: Object {
     
     @objc dynamic var isDeleted: Bool = false
     @objc dynamic var copiedText: String = ""
+    @objc dynamic var color: Int = -1
+    
+//    @objc dynamic var _color: Int = -1
+//    var color: ColorTag {
+//        get {
+//            return ColorTag(rawValue: _color)!
+//        }
+//        set {
+//            _color = newValue.rawValue
+//        }
+//    }
 }
