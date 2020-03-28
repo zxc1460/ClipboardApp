@@ -9,6 +9,7 @@ target 'ClipboardApp' do
   pod 'SideMenu'
   pod 'MGSwipeTableCell'
   pod ‘RealmSwift’
+  pod 'SnapKit', '~> 5.0.0'
 
   target 'ClipboardAppTests' do
     inherit! :search_paths

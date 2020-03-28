@@ -102,5 +102,14 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 && indexPath.row == 3 {
+            
+            self.navigationController?.pushViewController(BinViewController(), animated: true)
+        }
+        
+    }
+    
     
 }
