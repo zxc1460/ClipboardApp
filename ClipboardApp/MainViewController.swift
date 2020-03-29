@@ -18,8 +18,10 @@ class MainViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.getCopiedText), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
+    // 할당되었던 노티피케이션들 비활성화
     deinit {
         NotificationCenter.default.removeObserver(self)
+        notificationToken?.invalidate()
     }
     
     let colorTagRGB = [
@@ -34,6 +36,12 @@ class MainViewController: UIViewController {
     // 스토리보드 상에서 네비게이션바 아이템으로 사이드 메뉴 네비게이션 컨트롤러가 안띄어지네요.. 그래서 코드상으로 했습니다.
     let sideMenu = SideMenuNavigationController(rootViewController: SideMenuViewController())
     
+
+    // realm 객체들의 변화를 감지할 노티피케이션
+    var notificationToken: NotificationToken?
+    
+    @IBOutlet var clipsTableView : UITableView?
+
     @objc func sideMenuButtonClicked(_ sender: UIBarButtonItem) {
         present(sideMenu, animated: true, completion: nil)
     }
@@ -68,19 +76,9 @@ class MainViewController: UIViewController {
                     print("data insert done")
                        
                 }
-                self.asyncReloadData()
             }
         }
     }
-    
-    func asyncReloadData() {
-        DispatchQueue.main.async {
-            self.clipsTableView?.reloadData()
-            
-            print("reload data done")
-        }
-    }
-    
     @objc func colorTagTouched() {
         
         
@@ -119,6 +117,27 @@ class MainViewController: UIViewController {
 //        local realm data 저장되어 있는 위치 출력
 //        print("Realm is located at:", realm.configuration.fileURL!)
         self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
+
+        // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
+        notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.clipsTableView else { return }
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            case .update:
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+            }
+        }
+        
+
     }
     
 }
@@ -156,7 +175,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             try! realm.write {
                 item.isDeleted = true
             }
-            tableView.reloadData()
+            
             return true
         })
         
