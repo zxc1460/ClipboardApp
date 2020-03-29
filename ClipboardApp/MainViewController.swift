@@ -51,7 +51,7 @@ class MainViewController: UIViewController {
                     var flag: Bool = true
                     let arr = realm.objects(ClipModel.self)
                     for item in arr {
-                        if item.copiedText == str {
+                        if item.copiedText == str && item.isDeleted == false {
                             flag = false
                             break
                         }
@@ -120,7 +120,7 @@ class MainViewController: UIViewController {
     
         let realm = try! Realm()
         self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
-
+        
     }
     
 
@@ -230,10 +230,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     @objc func copyText(_ sender: UIButton) {
         if let item = items?[sender.tag] {
             UIPasteboard.general.string = item.copiedText
+            
+            let alert = UIAlertController(title: nil, message: "복사되었습니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    
     
     
 }
