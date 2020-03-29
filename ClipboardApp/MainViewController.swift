@@ -33,14 +33,14 @@ class MainViewController: UIViewController {
     
     // 스토리보드 상에서 네비게이션바 아이템으로 사이드 메뉴 네비게이션 컨트롤러가 안띄어지네요.. 그래서 코드상으로 했습니다.
     let sideMenu = SideMenuNavigationController(rootViewController: SideMenuViewController())
+    
+    @objc func sideMenuButtonClicked(_ sender: UIBarButtonItem) {
+        present(sideMenu, animated: true, completion: nil)
+    }
 
     var items: Results<ClipModel>?
     
     @IBOutlet var clipsTableView : UITableView?
-    @objc func sideMenuButtonClicked(_ sender: UIBarButtonItem) {
-        present(sideMenu, animated: true, completion: nil)
-    }
-    
     
     // 카피된 내용 가져오는 함수
     @objc func getCopiedText() {
@@ -88,14 +88,12 @@ class MainViewController: UIViewController {
     }
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // button 에 action 이 안먹어서 버튼 선언을 viewDidLoad() 안에로 바꿨어요
-        let leftButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
-
+        let rightButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
+        self.navigationItem.rightBarButtonItem = rightButton
         
         clipsTableView?.delegate = self
         clipsTableView?.dataSource = self
@@ -114,16 +112,15 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        self.navigationItem.leftBarButtonItem = leftButton
         
+
         // realm 초기화, 저장 데이터 가져오기
-    
         let realm = try! Realm()
+//        local realm data 저장되어 있는 위치 출력
+//        print("Realm is located at:", realm.configuration.fileURL!)
         self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
-        
     }
     
-
 }
 
 
@@ -145,11 +142,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        // MGSwiftTableCell 상속받아 커스터 마이징 하면 버튼들에 액션을 못준다?
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
-        
-        
-        
         cell.colorTag.tintColor = .white
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
@@ -175,7 +168,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 (sender: MGSwipeTableCell!) -> Bool in
                 let realm = try! Realm()
                 try! realm.write {
-                    
                     if item.color == index {
                         item.color = -1
                     }
@@ -183,7 +175,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                         item.color = index
                     }
                 }
-            
                 tableView.reloadData()
                 return true
                 

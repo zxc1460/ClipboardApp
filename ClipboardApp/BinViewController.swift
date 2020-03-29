@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import MGSwipeTableCell
+import SideMenu
 
 class BinViewController: UIViewController {
     
@@ -22,36 +23,25 @@ class BinViewController: UIViewController {
 
 
     let binTableView = UITableView()
-    var realm: Realm?
-    var items: Results<ClipModel>?
-    
     var binArray: Results<ClipModel>?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        self.view.addSubview(binTableView)
         binTableView.register(BinTableCustomCell.self, forCellReuseIdentifier: "binCell")
+        binTableView.frame = self.view.bounds
         binTableView.delegate = self
         binTableView.dataSource = self
-        self.view.addSubview(binTableView)
-        binTableView.frame = self.view.bounds
-    
-        self.realm = try! Realm()
-        self.items = realm?.objects(ClipModel.self)
-        
         self.navigationItem.title = "휴지통"
-
-        guard let items = self.items else {
-            print("items is empty")
-            self.binArray = nil
-            return
-        }
-        let binArray = items.filter("isDeleted == true")
+        
+        let realm = try! Realm()
+        let binArray = realm.objects(ClipModel.self).filter("isDeleted == true")
         self.binArray = binArray
+        
     }
-
-    
 }
+
 
 extension BinViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -60,17 +50,38 @@ extension BinViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "binCell", for: indexPath) as! BinTableCustomCell
         
         guard let binArray = self.binArray else {
-            
+            print("bin array is nil")
+            return UITableViewCell()
+        }
+        if binArray.isEmpty {
             print("bin array is empty")
             return UITableViewCell()
         }
+        
         let binItem = binArray[indexPath.row]
+            
+        let recoverBtn: MGSwipeButton = MGSwipeButton(title: "복원", backgroundColor: .green) {
+          (sender: MGSwipeTableCell!) -> Bool in
+            let realm = try! Realm()
+            try! realm.write {
+                binItem.isDeleted = false
+            }
+            self.binTableView.reloadData()
+            return true
+        }
         
-        cell.rightButtons = [MGSwipeButton(title: "복원", backgroundColor: .green),
-                             MGSwipeButton(title: "삭제", backgroundColor: .red)]
+        let completeDeleteBtn: MGSwipeButton = MGSwipeButton(title: "삭제", backgroundColor: .red) {
+            (sender: MGSwipeTableCell!) -> Bool in
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(binItem)
+            }
+            self.binTableView.reloadData()
+            return true
+        }
         
+        cell.rightButtons = [completeDeleteBtn, recoverBtn]
         cell.contextLabel.text = binItem.copiedText
-        
         
         return cell
     }
@@ -78,14 +89,14 @@ extension BinViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let binArray = self.binArray else {
-            
-            print("bin array is empty")
+            print("bin array is nil")
             return 0
         }
         
-        
-        return binArray.count
+        if binArray.isEmpty {
+            return 0
+        } else {
+            return binArray.count
+        }
     }
-    
-    
 }
