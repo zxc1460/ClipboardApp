@@ -30,9 +30,11 @@ class SideMenuCustomCell: UITableViewCell {
 //        self.accessoryType = .detailButton
 
         
-//        self.iconView.backgroundColor = .white
-        self.labelView.backgroundColor = .white
-        self.detailArrowView.backgroundColor = .white
+//        self.iconView.tintColor = .white
+//        self.labelView.tintColor = .white
+//        self.detailArrowView.tintColor = .white
+        
+        
         self.detailArrowView.image = UIImage(named: "Arrow")
         self.addSubview(iconView)
         self.addSubview(labelView)

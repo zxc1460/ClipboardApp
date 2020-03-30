@@ -114,6 +114,13 @@ class MainViewController: UIViewController {
         // realm 초기화, 저장 데이터 가져오기
     
         let realm = try! Realm()
+        
+        //휴지통 테스트
+        
+        
+        
+        
+        
         self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
         
         // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
@@ -147,6 +154,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
+        
         if let count = items?.count {
             return count
         } else {
@@ -171,13 +181,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         var colorTagBtns : [MGSwipeButton] = []
         
 //        delete button
-        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red, callback: {
+        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "Bin"), backgroundColor: .red, callback: {
             (sender: MGSwipeTableCell!) -> Bool in
             let realm = try! Realm()
             try! realm.write {
                 item.isDeleted = true
             }
             
+//            tableView.deleteRows(at: [indexPath], with: .right)
             return true
         })
         
@@ -257,10 +268,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 //extension MainViewController: MGSwipeTableCellDelegate {
 //
 //    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
-//
-//
-//
-//
 //
 //    }
 //}
