@@ -30,32 +30,29 @@ class SideMenuCustomCell: UITableViewCell {
 //        self.accessoryType = .detailButton
 
         
-//        self.iconView.backgroundColor = .white
-        self.labelView.backgroundColor = .white
-        self.detailArrowView.backgroundColor = .white
         self.detailArrowView.image = UIImage(named: "Arrow")
-        self.addSubview(iconView)
-        self.addSubview(labelView)
-        self.addSubview(detailArrowView)
+        self.contentView.addSubview(iconView)
+        self.contentView.addSubview(labelView)
+        self.contentView.addSubview(detailArrowView)
         
         iconView.translatesAutoresizingMaskIntoConstraints = false
         labelView.translatesAutoresizingMaskIntoConstraints = false
         detailArrowView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            iconView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            iconView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            iconView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+            iconView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            iconView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
+            iconView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 20),
             iconView.widthAnchor.constraint(equalToConstant: 40),
             
             iconView.rightAnchor.constraint(equalTo: labelView.leftAnchor, constant: -20),
-            labelView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            labelView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            labelView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            labelView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
             labelView.widthAnchor.constraint(equalToConstant: 100),
             
             labelView.rightAnchor.constraint(equalTo: detailArrowView.leftAnchor, constant: -20),
-            detailArrowView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            detailArrowView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            detailArrowView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            detailArrowView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
             detailArrowView.widthAnchor.constraint(equalToConstant: 30)
         ])
     }

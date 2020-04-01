@@ -20,7 +20,6 @@
 		FA930230241A6FFC00B9B405 /* ClipboardCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */; };
 		FF4BA07A241E6281004CF912 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4BA079241E6281004CF912 /* SideMenuViewController.swift */; };
 		FF4BA07C241E62E2004CF912 /* SideMenuCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4BA07B241E62E2004CF912 /* SideMenuCustomCell.swift */; };
-		FF6D1EA72425EB76009EF83F /* ConfigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D1EA62425EB76009EF83F /* ConfigureViewController.swift */; };
 		FF6D1EA9242700DE009EF83F /* BinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D1EA8242700DE009EF83F /* BinViewController.swift */; };
 		FF6D1EAB24270977009EF83F /* BinTableCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D1EAA24270977009EF83F /* BinTableCustomCell.swift */; };
 /* End PBXBuildFile section */
@@ -57,7 +56,6 @@
 		FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardCustomCell.swift; sourceTree = "<group>"; };
 		FF4BA079241E6281004CF912 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		FF4BA07B241E62E2004CF912 /* SideMenuCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCustomCell.swift; sourceTree = "<group>"; };
-		FF6D1EA62425EB76009EF83F /* ConfigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureViewController.swift; sourceTree = "<group>"; };
 		FF6D1EA8242700DE009EF83F /* BinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinViewController.swift; sourceTree = "<group>"; };
 		FF6D1EAA24270977009EF83F /* BinTableCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinTableCustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,7 +130,6 @@
 				FF4BA07B241E62E2004CF912 /* SideMenuCustomCell.swift */,
 				FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */,
 				AFB494F924149E1500C92D0E /* Main.storyboard */,
-				FF6D1EA62425EB76009EF83F /* ConfigureViewController.swift */,
 				FF6D1EA8242700DE009EF83F /* BinViewController.swift */,
 				FF6D1EAA24270977009EF83F /* BinTableCustomCell.swift */,
 				AFB494FC24149E1600C92D0E /* Assets.xcassets */,
@@ -329,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF4235A4241CA793003EA1BE /* ClipModel.swift in Sources */,
-				FF6D1EA72425EB76009EF83F /* ConfigureViewController.swift in Sources */,
 				AFB494F824149E1500C92D0E /* MainViewController.swift in Sources */,
 				FF6D1EA9242700DE009EF83F /* BinViewController.swift in Sources */,
 				AFB494F424149E1500C92D0E /* AppDelegate.swift in Sources */,
