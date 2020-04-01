@@ -197,8 +197,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                         item.color = index
                     }
                 }
-            
-                tableView.reloadData()
+
                 return true
                 
             })
