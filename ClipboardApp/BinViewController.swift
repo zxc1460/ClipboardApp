@@ -36,7 +36,7 @@ class BinViewController: UIViewController {
         self.navigationItem.title = "휴지통"
         
         let realm = try! Realm()
-        let binArray = realm.objects(ClipModel.self).filter("isDeleted == true")
+        let binArray = realm.objects(ClipModel.self).filter("isDeleted == true").sorted(byKeyPath: "modiDate", ascending: false)
         self.binArray = binArray
         
     }
@@ -65,6 +65,7 @@ extension BinViewController: UITableViewDelegate, UITableViewDataSource {
             let realm = try! Realm()
             try! realm.write {
                 binItem.isDeleted = false
+                binItem.modiDate = Date()
             }
             self.binTableView.reloadData()
             return true

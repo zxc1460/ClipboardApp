@@ -48,7 +48,8 @@ class MainViewController: UIViewController {
 
     var items: Results<ClipModel>?
     
-    @IBOutlet var clipsTableView : UITableView?
+    
+
     
     // 카피된 내용 가져오는 함수
     @objc func getCopiedText() {
@@ -85,6 +86,15 @@ class MainViewController: UIViewController {
         
     }
     
+    func reloadData() {
+        if let realm = try? Realm() {
+            self.items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
+            if let tableView = self.clipsTableView {
+                tableView.reloadData()
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,26 +120,19 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
+        self.reloadData()
         
-
-        // realm 초기화, 저장 데이터 가져오기
-        let realm = try! Realm()
-//        local realm data 저장되어 있는 위치 출력
-//        print("Realm is located at:", realm.configuration.fileURL!)
-        self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
-
         // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
         notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
-            guard let tableView = self?.clipsTableView else { return }
             switch changes {
             case .initial:
                 // Results are now populated and can be accessed without blocking the UI
                 DispatchQueue.main.async {
-                    tableView.reloadData()
+                    self?.reloadData()
                 }
             case .update:
                 DispatchQueue.main.async {
-                    tableView.reloadData()
+                    self?.reloadData()
                 }
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
@@ -174,6 +177,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             let realm = try! Realm()
             try! realm.write {
                 item.isDeleted = true
+                item.modiDate = Date()
             }
             
             return true
@@ -232,6 +236,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75.0;
     }
+    
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        code
 //    }
@@ -259,8 +264,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 //
 //    }
 //}
-
-
 
 
 extension UIColor {
