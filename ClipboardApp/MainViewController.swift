@@ -237,6 +237,25 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return 75.0;
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "DetailSegue", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailSegue" {
+            if let tableView = self.clipsTableView {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    if let vc = segue.destination as? DetailViewController {
+                        if let item = items?[indexPath.row] {
+                            vc.copiedText = item.copiedText
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        code
 //    }

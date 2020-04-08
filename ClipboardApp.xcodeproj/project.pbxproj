@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		009185BBF14F53F965A24073 /* Pods_ClipboardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DF111595ABCD88D25B801C /* Pods_ClipboardApp.framework */; };
 		34536EE752DC280BBCFEF3D2 /* Pods_ClipboardAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EF8F433E3F20D734090558 /* Pods_ClipboardAppTests.framework */; };
+		AF1F3B6B243DA7C4002DBC51 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1F3B6A243DA7C4002DBC51 /* DetailViewController.swift */; };
 		AF4235A4241CA793003EA1BE /* ClipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4235A3241CA793003EA1BE /* ClipModel.swift */; };
 		AFB494F424149E1500C92D0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB494F324149E1500C92D0E /* AppDelegate.swift */; };
 		AFB494F624149E1500C92D0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB494F524149E1500C92D0E /* SceneDelegate.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		1D1BBBF15BFDAE6E7C3F6C64 /* Pods-ClipboardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipboardApp.debug.xcconfig"; path = "Target Support Files/Pods-ClipboardApp/Pods-ClipboardApp.debug.xcconfig"; sourceTree = "<group>"; };
+		AF1F3B6A243DA7C4002DBC51 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AF4235A3241CA793003EA1BE /* ClipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipModel.swift; sourceTree = "<group>"; };
 		AFB494F024149E1500C92D0E /* ClipboardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipboardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB494F324149E1500C92D0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				AFB494FC24149E1600C92D0E /* Assets.xcassets */,
 				AFB494FE24149E1600C92D0E /* LaunchScreen.storyboard */,
 				AFB4950124149E1600C92D0E /* Info.plist */,
+				AF1F3B6A243DA7C4002DBC51 /* DetailViewController.swift */,
 			);
 			path = ClipboardApp;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				AFB494F624149E1500C92D0E /* SceneDelegate.swift in Sources */,
 				FF4BA07A241E6281004CF912 /* SideMenuViewController.swift in Sources */,
 				FF4BA07C241E62E2004CF912 /* SideMenuCustomCell.swift in Sources */,
+				AF1F3B6B243DA7C4002DBC51 /* DetailViewController.swift in Sources */,
 				FA930230241A6FFC00B9B405 /* ClipboardCustomCell.swift in Sources */,
 				FF6D1EAB24270977009EF83F /* BinTableCustomCell.swift in Sources */,
 			);
