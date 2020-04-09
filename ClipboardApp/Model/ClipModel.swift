@@ -13,9 +13,18 @@ import RealmSwift
 //    case non = -1, red = 0, yellow, green, blue, purple
 //}
 
+//class ClipList: Object {
+//    let clips = List<ClipModel>()
+//}
+//
+//class TrashList: Object {
+//    let trashs = List<ClipModel>()
+//}
+
 class ClipModel: Object {
     
     @objc dynamic var isDeleted: Bool = false
+    @objc dynamic var modiDate: Date = Date()
     @objc dynamic var copiedText: String = ""
     @objc dynamic var color: Int = -1
     
