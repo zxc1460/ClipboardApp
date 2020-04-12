@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 class SideMenuViewController: UIViewController {
     
     private let tableView = UITableView()
-    let iconImageList: [String] = ["Clipboard", "URL", "Config", "Bin"]
-    let menuTextList: [String] = ["클립보드", "URL", "설정", "휴지통"]
+    let iconImageList: [String] = ["Clipboard", "Config", "Bin"]
+    let menuTextList: [String] = ["클립보드", "설정", "휴지통"]
     
     let colorList: [UIColor] = [.red, .yellow, .green, .blue, .purple]
     let colorName: [String] = ["빨간색", "노란색", "초록색", "파란색", "보라색"]
@@ -62,7 +62,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
-            return 4
+            return 3
         } else if section == 1 {
             return 5
         } else {
@@ -104,11 +104,26 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 && indexPath.row == 3 {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            
+            let realm = try! Realm()
+            let items = realm.objects(ClipModel.self).filter("isDeleted == false")
+            
+            self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
+        }
+        
+        if indexPath.section == 0 && indexPath.row == 2 {
             self.navigationController?.pushViewController(BinViewController(), animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if indexPath.section == 1 {
+            
+            let realm = try! Realm()
+            let items = realm.objects(ClipModel.self).filter("isDeleted == false").filter("color == \(indexPath.row)")
+            
+            self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
+        }
     }
     
 }
