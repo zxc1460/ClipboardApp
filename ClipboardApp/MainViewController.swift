@@ -48,6 +48,20 @@ class MainViewController: UIViewController {
     
     // realm 객체들의 변화를 감지할 노티피케이션
     var notificationToken: NotificationToken?
+
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var filteredClips: [ClipModel] = []
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+
+
     
     // 카피된 내용 가져오는 함수
     @objc func getCopiedText() {
@@ -79,6 +93,28 @@ class MainViewController: UIViewController {
         }
     }
     
+    func reloadData() {
+        if let realm = try? Realm() {
+            self.items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
+            if let tableView = self.clipsTableView {
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        
+        if let clips = self.items {
+            filteredClips = clips.filter { (clip: ClipModel) -> Bool in
+                return clip.copiedText.lowercased().contains(searchText.lowercased())
+            }
+        }
+    
+        if let tableView = self.clipsTableView {
+            tableView.reloadData()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +142,25 @@ class MainViewController: UIViewController {
         sideMenu.navigationBar.isHidden = true
         sideMenu.menuWidth = 270
         
+
+        navigationItem.title = "클립보드"
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = UIColor.colorWithRGBHex(hex: 0xff8a69)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
+        self.reloadData()
+        
+        // 검색 기능
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Clips"
+        
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.searchTextField.backgroundColor = UIColor.white
+        }
+
 
         // realm 초기화, 저장 데이터 가져오기
 //        let realm = try! Realm()
@@ -114,18 +168,23 @@ class MainViewController: UIViewController {
 //        print("Realm is located at:", realm.configuration.fileURL!)
 //        self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
 
+
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        
+
         // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
         notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
-            guard let tableView = self?.clipsTableView else { return }
             switch changes {
             case .initial:
                 // Results are now populated and can be accessed without blocking the UI
                 DispatchQueue.main.async {
-                    tableView.reloadData()
+                    self?.reloadData()
                 }
             case .update:
                 DispatchQueue.main.async {
-                    tableView.reloadData()
+                    self?.reloadData()
                 }
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
@@ -136,8 +195,18 @@ class MainViewController: UIViewController {
 
     }
     
+    
+    
 }
 
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        if let text = searchBar.text {
+            filterContentForSearchText(text)
+        }
+    }
+}
 
 
 
@@ -146,6 +215,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = items?.count {
+            if isFiltering {
+                return filteredClips.count
+            }
             return count
         } else {
             return 0
@@ -153,11 +225,22 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = items?[indexPath.row] else {
+        guard let clip = items?[indexPath.row] else {
             return UITableViewCell()
         }
         
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipCell", for: indexPath) as! MainTableCustomCell
+
+        let item: ClipModel
+        if isFiltering {
+            item = filteredClips[indexPath.row]
+        } else {
+            item = clip
+        }
+        
+        
+
         cell.colorTag.tintColor = .white
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
@@ -170,6 +253,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             let realm = try! Realm()
             try! realm.write {
                 item.isDeleted = true
+                item.modiDate = Date()
             }
             
             return true
@@ -228,9 +312,25 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75.0;
     }
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        code
-//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "DetailSegue", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailSegue" {
+            if let tableView = self.clipsTableView {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    if let vc = segue.destination as? DetailViewController {
+                        if let item = items?[indexPath.row] {
+                            vc.copiedText = item.copiedText
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     @objc func copyText(_ sender: UIButton) {
         if let item = items?[sender.tag] {
@@ -244,7 +344,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     
 }
-
 
 extension UIColor {
     class func colorWithRGBHex(hex: Int, alpha: Float = 1.0) -> UIColor {
