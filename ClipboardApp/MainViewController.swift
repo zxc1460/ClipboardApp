@@ -48,7 +48,17 @@ class MainViewController: UIViewController {
 
     var items: Results<ClipModel>?
     
+    let searchController = UISearchController(searchResultsController: nil)
     
+    var filteredClips: [ClipModel] = []
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
 
     
     // 카피된 내용 가져오는 함수
@@ -95,6 +105,19 @@ class MainViewController: UIViewController {
         }
     }
     
+    func filterContentForSearchText(_ searchText: String) {
+        
+        if let clips = self.items {
+            filteredClips = clips.filter { (clip: ClipModel) -> Bool in
+                return clip.copiedText.lowercased().contains(searchText.lowercased())
+            }
+        }
+    
+        if let tableView = self.clipsTableView {
+            tableView.reloadData()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +145,14 @@ class MainViewController: UIViewController {
         
         self.reloadData()
         
+        // 검색 기능
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Clips"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        
         // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
         notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
             switch changes {
@@ -143,8 +174,18 @@ class MainViewController: UIViewController {
 
     }
     
+    
+    
 }
 
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        if let text = searchBar.text {
+            filterContentForSearchText(text)
+        }
+    }
+}
 
 
 
@@ -153,6 +194,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = items?.count {
+            if isFiltering {
+                return filteredClips.count
+            }
             return count
         } else {
             return 0
@@ -160,8 +204,15 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = items?[indexPath.row] else {
+        guard let clip = items?[indexPath.row] else {
             return UITableViewCell()
+        }
+        
+        let item: ClipModel
+        if isFiltering {
+            item = filteredClips[indexPath.row]
+        } else {
+            item = clip
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
