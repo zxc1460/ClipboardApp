@@ -29,10 +29,10 @@ class BinTableCustomCell: MGSwipeTableCell {
         contentView.addSubview(contextLabel)
         
         contextLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView).offset(17)
-            make.bottom.equalTo(self.contentView).offset(-18)
-            make.left.equalTo(self.contentView).offset(18)
-            make.right.equalTo(self.contentView).offset(-20)
+            make.top.equalTo(self.contentView).offset(20)
+            make.bottom.equalTo(self.contentView).offset(-20)
+            make.left.equalTo(self.contentView).offset(50)
+            make.right.equalTo(self.contentView).offset(-50)
         }
         
     }

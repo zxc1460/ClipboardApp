@@ -48,7 +48,7 @@ class SideMenuCustomCell: UITableViewCell {
             iconView.rightAnchor.constraint(equalTo: labelView.leftAnchor, constant: -20),
             labelView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
             labelView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
-            labelView.widthAnchor.constraint(equalToConstant: 100),
+            labelView.widthAnchor.constraint(equalToConstant: 250),
             
             labelView.rightAnchor.constraint(equalTo: detailArrowView.leftAnchor, constant: -20),
             detailArrowView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),

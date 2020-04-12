@@ -131,16 +131,16 @@
 				AFB494F524149E1500C92D0E /* SceneDelegate.swift */,
 				AFB494F724149E1500C92D0E /* MainViewController.swift */,
 				FFC33EE92442E21E0086C381 /* MainTableCustomCell.swift */,
+				AF1F3B6A243DA7C4002DBC51 /* DetailViewController.swift */,
 				FF4BA079241E6281004CF912 /* SideMenuViewController.swift */,
 				FF4BA07B241E62E2004CF912 /* SideMenuCustomCell.swift */,
-				FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */,
-				AFB494F924149E1500C92D0E /* Main.storyboard */,
 				FF6D1EA8242700DE009EF83F /* BinViewController.swift */,
 				FF6D1EAA24270977009EF83F /* BinTableCustomCell.swift */,
 				AFB494FC24149E1600C92D0E /* Assets.xcassets */,
 				AFB494FE24149E1600C92D0E /* LaunchScreen.storyboard */,
+				AFB494F924149E1500C92D0E /* Main.storyboard */,
 				AFB4950124149E1600C92D0E /* Info.plist */,
-				AF1F3B6A243DA7C4002DBC51 /* DetailViewController.swift */,
+				FA93022F241A6FFB00B9B405 /* ClipboardCustomCell.swift */,
 			);
 			path = ClipboardApp;
 			sourceTree = "<group>";

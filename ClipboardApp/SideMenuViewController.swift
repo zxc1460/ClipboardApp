@@ -31,6 +31,10 @@ class SideMenuViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        // 메뉴를 가장한 BackButton(pop!)
+        let backItem = UIBarButtonItem(title: "메뉴", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        
     }
     
 }
@@ -96,18 +100,28 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return "ClipboardApp"
         } else if section == 1 {
-            return "------------------------"
+            return "Color"
         } else {
             return ""
         }
     }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 0 {
+//          return UITableViewCell()
+//        } else if section == 1 {
+//            return UITableViewCell()
+//        } else {
+//            return UITableViewCell()
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 0 && indexPath.row == 0 {
             
             let realm = try! Realm()
-            let items = realm.objects(ClipModel.self).filter("isDeleted == false")
+            let items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
             
             self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
         }
@@ -121,6 +135,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
             let realm = try! Realm()
             let items = realm.objects(ClipModel.self).filter("isDeleted == false").filter("color == \(indexPath.row)")
+                .sorted(byKeyPath: "modiDate", ascending: false)
             
             self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
         }
