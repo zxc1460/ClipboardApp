@@ -149,6 +149,11 @@ class MainViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Clips"
+        
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.searchTextField.backgroundColor = UIColor.white
+        }
+
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
