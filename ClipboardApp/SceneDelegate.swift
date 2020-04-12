@@ -24,11 +24,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let windowScene = scene as? UIWindowScene {
            let window = UIWindow(windowScene: windowScene)
-           
-            let navigationController = UINavigationController(rootViewController: MainViewController(items: items))
+           let sideMenuVC = SideMenuViewController()
+           let navigationController = UINavigationController(rootViewController: sideMenuVC)
            window.rootViewController = navigationController
+           sideMenuVC.navigationController?.pushViewController(MainViewController(items: items), animated: true)
+            
            window.makeKeyAndVisible()
-           
            self.window = window
         }
         

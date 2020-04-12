@@ -17,6 +17,9 @@ class MainViewController: UIViewController {
     var items: Results<ClipModel>?
     let clipsTableView = UITableView()
     
+    // realm 객체들의 변화를 감지할 노티피케이션
+    var notificationToken: NotificationToken?
+    
     init(items: Results<ClipModel>?) {
         super.init(nibName: nil, bundle: nil)
         self.items = items
@@ -26,7 +29,6 @@ class MainViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // 할당되었던 노티피케이션들 비활성화
     deinit {
         NotificationCenter.default.removeObserver(self)
         notificationToken?.invalidate()
@@ -40,28 +42,18 @@ class MainViewController: UIViewController {
         UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
     ]
     let swipeBtnBgColor = UIColor.colorWithRGBHex(hex: 0xe6e6e6)
-    let sideMenu = SideMenuNavigationController(rootViewController: SideMenuViewController())
     
-    @objc func sideMenuButtonClicked(_ sender: UIBarButtonItem) {
-        present(sideMenu, animated: true, completion: nil)
-    }
     
-    // realm 객체들의 변화를 감지할 노티피케이션
-    var notificationToken: NotificationToken?
 
+    // search
     let searchController = UISearchController(searchResultsController: nil)
-    
     var filteredClips: [ClipModel] = []
-    
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
-
-
     
     // 카피된 내용 가져오는 함수
     @objc func getCopiedText() {
@@ -93,37 +85,33 @@ class MainViewController: UIViewController {
         }
     }
     
-    func reloadData() {
+    private func sortByModiDate() {
         if let realm = try? Realm() {
             self.items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
-            if let tableView = self.clipsTableView {
-                tableView.reloadData()
-            }
+            clipsTableView.reloadData()
         }
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        
+
         if let clips = self.items {
             filteredClips = clips.filter { (clip: ClipModel) -> Bool in
                 return clip.copiedText.lowercased().contains(searchText.lowercased())
             }
         }
-    
-        if let tableView = self.clipsTableView {
-            tableView.reloadData()
-        }
+        
+        clipsTableView.reloadData()
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // button 에 action 이 안먹어서 버튼 선언을 viewDidLoad() 안에로 바꿨어요
-        let leftButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
-        self.navigationItem.leftBarButtonItem = leftButton
+//        let leftButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
+//        self.navigationItem.leftBarButtonItem = leftButton
         
-        navigationItem.title = "클립보드"
+        self.navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = UIColor.colorWithRGBHex(hex: 0xff8a69)
         self.navigationController?.navigationBar.isTranslucent = false
@@ -135,13 +123,6 @@ class MainViewController: UIViewController {
         clipsTableView.delegate = self
         clipsTableView.dataSource = self
         clipsTableView.register(MainTableCustomCell.self, forCellReuseIdentifier: "clipCell")
-        
-        sideMenu.leftSide = true
-        sideMenu.presentationStyle = .viewSlideOutMenuIn
-        sideMenu.statusBarEndAlpha = 0
-        sideMenu.navigationBar.isHidden = true
-        sideMenu.menuWidth = 270
-        
 
         navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
@@ -150,53 +131,38 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        self.reloadData()
-        
         // 검색 기능
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Clips"
-        
         if #available(iOS 13.0, *) {
             searchController.searchBar.searchTextField.backgroundColor = UIColor.white
         }
-
-
-        // realm 초기화, 저장 데이터 가져오기
-//        let realm = try! Realm()
-//        local realm data 저장되어 있는 위치 출력
-//        print("Realm is located at:", realm.configuration.fileURL!)
-//        self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
-
 
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
         
-
         // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
-        notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
-            switch changes {
-            case .initial:
-                // Results are now populated and can be accessed without blocking the UI
-                DispatchQueue.main.async {
-                    self?.reloadData()
-                }
-            case .update:
-                DispatchQueue.main.async {
-                    self?.reloadData()
-                }
-            case .error(let error):
-                // An error occurred while opening the Realm file on the background worker thread
-                fatalError("\(error)")
-            }
-        }
-        
+//        notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
+//            switch changes {
+//            case .initial:
+//                // Results are now populated and can be accessed without blocking the UI
+//                DispatchQueue.main.async {
+//                    self?.reloadData()
+//                }
+//            case .update:
+//                DispatchQueue.main.async {
+//                    self?.reloadData()
+//                }
+//            case .error(let error):
+//                // An error occurred while opening the Realm file on the background worker thread
+//                fatalError("\(error)")
+//            }
+//        }
+//
 
     }
-    
-    
-    
 }
 
 extension MainViewController: UISearchResultsUpdating {
@@ -207,8 +173,6 @@ extension MainViewController: UISearchResultsUpdating {
         }
     }
 }
-
-
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -228,7 +192,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         guard let clip = items?[indexPath.row] else {
             return UITableViewCell()
         }
-        
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "clipCell", for: indexPath) as! MainTableCustomCell
 
@@ -239,15 +202,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             item = clip
         }
         
-        
-
         cell.colorTag.tintColor = .white
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
         
         var colorTagBtns : [MGSwipeButton] = []
         
-//        delete button
         let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red, callback: {
             (sender: MGSwipeTableCell!) -> Bool in
             let realm = try! Realm()
@@ -255,7 +215,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 item.isDeleted = true
                 item.modiDate = Date()
             }
-            
+            self.clipsTableView.reloadData()
             return true
         })
         
@@ -274,6 +234,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                         item.color = index
                     }
                 }
+                self.clipsTableView.reloadData()
                 return true
                 
             })
@@ -314,23 +275,23 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "DetailSegue", sender: self)
+//        self.performSegue(withIdentifier: "DetailSegue", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailSegue" {
-            if let tableView = self.clipsTableView {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    if let vc = segue.destination as? DetailViewController {
-                        if let item = items?[indexPath.row] {
-                            vc.copiedText = item.copiedText
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "DetailSegue" {
+//            if let tableView = self.clipsTableView {
+//                if let indexPath = tableView.indexPathForSelectedRow {
+//                    if let vc = segue.destination as? DetailViewController {
+//                        if let item = items?[indexPath.row] {
+//                            vc.copiedText = item.copiedText
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     @objc func copyText(_ sender: UIButton) {
         if let item = items?[sender.tag] {
@@ -355,3 +316,5 @@ extension UIColor {
     }
 }
 
+//        local realm data 저장되어 있는 위치 출력
+//        print("Realm is located at:", realm.configuration.fileURL!)

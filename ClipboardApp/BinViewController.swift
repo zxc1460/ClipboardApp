@@ -13,17 +13,15 @@ import SideMenu
 
 class BinViewController: UIViewController {
     
+    let binTableView = UITableView()
+    var binArray: Results<ClipModel>?
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-
-    let binTableView = UITableView()
-    var binArray: Results<ClipModel>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +62,8 @@ extension BinViewController: UITableViewDelegate, UITableViewDataSource {
           (sender: MGSwipeTableCell!) -> Bool in
             let realm = try! Realm()
             try! realm.write {
+                // 복원했을 때 태그 칼라 하얀색으로
+                binItem.color = -1
                 binItem.isDeleted = false
                 binItem.modiDate = Date()
             }
