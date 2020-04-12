@@ -10,14 +10,22 @@ import UIKit
 import SideMenu
 import MGSwipeTableCell
 import RealmSwift
+import SnapKit
 
 class MainViewController: UIViewController {
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    var items: Results<ClipModel>?
+    let clipsTableView = UITableView()
+    
+    init(items: Results<ClipModel>?) {
+        super.init(nibName: nil, bundle: nil)
+        self.items = items
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.getCopiedText), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     // 할당되었던 노티피케이션들 비활성화
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -32,23 +40,14 @@ class MainViewController: UIViewController {
         UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
     ]
     let swipeBtnBgColor = UIColor.colorWithRGBHex(hex: 0xe6e6e6)
-    
-    // 스토리보드 상에서 네비게이션바 아이템으로 사이드 메뉴 네비게이션 컨트롤러가 안띄어지네요.. 그래서 코드상으로 했습니다.
     let sideMenu = SideMenuNavigationController(rootViewController: SideMenuViewController())
     
-
-    // realm 객체들의 변화를 감지할 노티피케이션
-    var notificationToken: NotificationToken?
-    
-    @IBOutlet var clipsTableView : UITableView?
-
     @objc func sideMenuButtonClicked(_ sender: UIBarButtonItem) {
         present(sideMenu, animated: true, completion: nil)
     }
-
-    var items: Results<ClipModel>?
     
-    @IBOutlet var clipsTableView : UITableView?
+    // realm 객체들의 변화를 감지할 노티피케이션
+    var notificationToken: NotificationToken?
     
     // 카피된 내용 가져오는 함수
     @objc func getCopiedText() {
@@ -79,29 +78,14 @@ class MainViewController: UIViewController {
             }
         }
     }
-    @objc func colorTagTouched() {
-        
-        
-        
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // button 에 action 이 안먹어서 버튼 선언을 viewDidLoad() 안에로 바꿨어요
-        let rightButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
-        self.navigationItem.rightBarButtonItem = rightButton
-        
-        clipsTableView?.delegate = self
-        clipsTableView?.dataSource = self
-        
-        
-        sideMenu.leftSide = true
-        sideMenu.presentationStyle = .viewSlideOutMenuIn
-        sideMenu.statusBarEndAlpha = 0
-        sideMenu.navigationBar.isHidden = true
-        sideMenu.menuWidth = 270
+        let leftButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
+        self.navigationItem.leftBarButtonItem = leftButton
         
         navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
@@ -110,13 +94,25 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
+        self.view.addSubview(clipsTableView)
+        clipsTableView.frame = self.view.bounds
+        clipsTableView.delegate = self
+        clipsTableView.dataSource = self
+        clipsTableView.register(MainTableCustomCell.self, forCellReuseIdentifier: "clipCell")
+        
+        sideMenu.leftSide = true
+        sideMenu.presentationStyle = .viewSlideOutMenuIn
+        sideMenu.statusBarEndAlpha = 0
+        sideMenu.navigationBar.isHidden = true
+        sideMenu.menuWidth = 270
+        
         
 
         // realm 초기화, 저장 데이터 가져오기
-        let realm = try! Realm()
+//        let realm = try! Realm()
 //        local realm data 저장되어 있는 위치 출력
 //        print("Realm is located at:", realm.configuration.fileURL!)
-        self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
+//        self.items = realm.objects(ClipModel.self).filter("isDeleted == false")
 
         // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
         notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
@@ -161,7 +157,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "clipboardCell", for: indexPath) as! ClipboardCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "clipCell", for: indexPath) as! MainTableCustomCell
         cell.colorTag.tintColor = .white
         cell.copyBtn.tag = indexPath.row
         cell.copyBtn.addTarget(self, action: #selector(copyText(_:)), for: .touchUpInside)
@@ -248,19 +244,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     
 }
-
-//extension MainViewController: MGSwipeTableCellDelegate {
-//
-//    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
-//
-//
-//
-//
-//
-//    }
-//}
-
-
 
 
 extension UIColor {
