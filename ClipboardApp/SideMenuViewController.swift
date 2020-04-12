@@ -121,7 +121,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 && indexPath.row == 0 {
             
             let realm = try! Realm()
-            let items = realm.objects(ClipModel.self).filter("isDeleted == false")
+            let items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
             
             self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
         }
@@ -135,6 +135,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
             let realm = try! Realm()
             let items = realm.objects(ClipModel.self).filter("isDeleted == false").filter("color == \(indexPath.row)")
+                .sorted(byKeyPath: "modiDate", ascending: false)
             
             self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
         }

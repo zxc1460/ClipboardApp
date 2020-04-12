@@ -77,18 +77,9 @@ class MainViewController: UIViewController {
                             realm.add(newClip)
                         }
                     }
-                    
-                    print("data insert done")
-                       
+                    print("successfully insert data to realm from UIPasteBoard")
                 }
             }
-        }
-    }
-    
-    private func sortByModiDate() {
-        if let realm = try? Realm() {
-            self.items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
-            clipsTableView.reloadData()
         }
     }
     
@@ -106,11 +97,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // button 에 action 이 안먹어서 버튼 선언을 viewDidLoad() 안에로 바꿨어요
-//        let leftButton = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(sideMenuButtonClicked(_:)))
-//        self.navigationItem.leftBarButtonItem = leftButton
-        
+    
         self.navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = UIColor.colorWithRGBHex(hex: 0xff8a69)
@@ -143,7 +130,8 @@ class MainViewController: UIViewController {
         definesPresentationContext = true
         
         
-        // items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
+//        앱 구조 바꾸면서 메뉴 뷰에서 메인 뷰 띄울 때 변화된 아이템으로 초기화하기 때문에 필요없음
+//        items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
 //        notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
 //            switch changes {
 //            case .initial:
@@ -247,27 +235,18 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             colorTagBtns.append(colorTagBtn)
         }
         
-        
-        
-
         if colorIndex != -1 { // 선택된 color tag 없으면 pass
             colorTagBtns[colorIndex].backgroundColor = .white
             colorTagBtns[colorIndex].isSelected = true
             cell.colorTag.tintColor = self.colorTagRGB[colorIndex]
         }
-        
-        
-        
         delBtn.buttonWidth = UIScreen.main.bounds.width / 6
         colorTagBtns.append(delBtn)
-        colorTagBtns.reverse() // 쌓인 순서 바꿔주기 <-
+        colorTagBtns.reverse() // 순서 바꿔주기
         cell.rightButtons = colorTagBtns
-        
         cell.contextLabel.text = item.copiedText
         
-
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -300,6 +279,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             let alert = UIAlertController(title: nil, message: "복사되었습니다.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+
         }
     }
     

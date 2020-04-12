@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         
         let realm = try! Realm()
-        let items = realm.objects(ClipModel.self).filter("isDeleted == false")
+        let items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
         
         let window = UIWindow()
         

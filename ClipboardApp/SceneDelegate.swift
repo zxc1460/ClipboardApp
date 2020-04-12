@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         let realm = try! Realm()
-        let items = realm.objects(ClipModel.self).filter("isDeleted == false")
+        let items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
         
         if let windowScene = scene as? UIWindowScene {
            let window = UIWindow(windowScene: windowScene)
