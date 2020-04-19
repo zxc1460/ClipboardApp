@@ -39,21 +39,25 @@ class SideMenuCustomCell: UITableViewCell {
         labelView.translatesAutoresizingMaskIntoConstraints = false
         detailArrowView.translatesAutoresizingMaskIntoConstraints = false
         
+        labelView.font.withSize(20)
+        
         NSLayoutConstraint.activate([
-            iconView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            iconView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
-            iconView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 20),
-            iconView.widthAnchor.constraint(equalToConstant: 40),
-            
+            iconView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 25),
+            iconView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -25),
+            iconView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 30),
+            iconView.widthAnchor.constraint(equalToConstant: 30),
             iconView.rightAnchor.constraint(equalTo: labelView.leftAnchor, constant: -20),
-            labelView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            labelView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
-            labelView.widthAnchor.constraint(equalToConstant: 100),
             
+            
+            labelView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 9),
+            labelView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -11),
+            labelView.widthAnchor.constraint(equalToConstant: 270),
             labelView.rightAnchor.constraint(equalTo: detailArrowView.leftAnchor, constant: -20),
-            detailArrowView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            detailArrowView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
-            detailArrowView.widthAnchor.constraint(equalToConstant: 30)
+            
+            
+            detailArrowView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 27),
+            detailArrowView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -27),
+            detailArrowView.widthAnchor.constraint(equalToConstant: 25)
         ])
     }
 }

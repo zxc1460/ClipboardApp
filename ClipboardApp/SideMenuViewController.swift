@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 class SideMenuViewController: UIViewController {
-//    
+    
     private let tableView = UITableView()
-    let iconImageList: [String] = ["Clipboard", "URL", "Config", "Bin"]
-    let menuTextList: [String] = ["클립보드", "URL", "설정", "휴지통"]
+    let iconImageList: [String] = ["Clipboard", "Config", "Bin"]
+    let menuTextList: [String] = ["클립보드", "설정", "휴지통"]
     
     let colorList: [UIColor] = [
         UIColor.colorWithRGBHex(hex: 0xff8a78), // red
@@ -38,7 +38,18 @@ class SideMenuViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.tableView.backgroundColor = UIColor.colorWithRGBHex(hex: 0x888888)
+        // 스크롤 X
+        self.tableView.isScrollEnabled = false
+        
+        // 메뉴를 가장한 BackButton(pop!)
+        let backItem = UIBarButtonItem(title: "메뉴", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        
+        // 구분선 지우기
+        self.tableView.separatorColor = UIColor.clear
+        
+        
+        self.navigationItem.title = "메뉴"
     }
     
 }
@@ -48,9 +59,10 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! SideMenuCustomCell
 //        cell.labelView.tintColor = .white
-        cell.labelView.textColor = .white
+//        cell.labelView.textColor = .black
         if indexPath.section == 0 {
             cell.iconView.image = UIImage(named:"\(iconImageList[indexPath.row])")
+            cell.iconView.tintColor = UIColor.colorWithRGBHex(hex: 0xFF8A69)
             cell.labelView.text = "\(menuTextList[indexPath.row])"
             
         } else if indexPath.section == 1 {
@@ -65,7 +77,10 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         
-        cell.backgroundColor = UIColor.colorWithRGBHex(hex: 0x888888)
+        cell.detailArrowView.tintColor = .darkGray
+//        cell.backgroundColor = UIColor.colorWithRGBHex(hex: 0x888888)
+        
+        
         
         return cell
     }
@@ -73,7 +88,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
-            return 4
+            return 3
         } else if section == 1 {
             return 5
         } else {
@@ -84,7 +99,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return CGFloat(60)
+        return CGFloat(80)
     }
     
     
@@ -95,9 +110,9 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 50
+            return 10
         } else if section == 1 {
-            return 50
+            return 30
         } else {
             return 0
         }
@@ -107,21 +122,53 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         if section == 0 {
-            return "ClipboardApp"
+            return " "
         } else if section == 1 {
-            return "------------------------"
+            return " "
         } else {
             return ""
         }
     }
     
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 0 {
+//          return UITableViewCell()
+//        } else if section == 1 {
+//            return UITableViewCell()
+//        } else {
+//            return UITableViewCell()
+//        }
+//    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 && indexPath.row == 3 {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            
+            let realm = try! Realm()
+            let items = realm.objects(ClipModel.self).filter("isDeleted == false").sorted(byKeyPath: "modiDate", ascending: false)
+            
+            self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
+        }
+        
+        if indexPath.section == 0 && indexPath.row == 2 {
             self.navigationController?.pushViewController(BinViewController(), animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if indexPath.section == 1 {
+            
+            let realm = try! Realm()
+            let items = realm.objects(ClipModel.self).filter("isDeleted == false").filter("color == \(indexPath.row)")
+                .sorted(byKeyPath: "modiDate", ascending: false)
+            
+            self.navigationController?.pushViewController(MainViewController(items: items), animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.white
+        return headerView
     }
     
 }
