@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
         UIColor.colorWithRGBHex(hex: 0xdbacfc), // purple
     ]
     let swipeBtnBgColor = UIColor.colorWithRGBHex(hex: 0xe6e6e6)
-    
+    let navigationBarAppearance = UINavigationBarAppearance()
     
 
     // search
@@ -100,10 +100,16 @@ class MainViewController: UIViewController {
     
         self.navigationItem.title = "클립보드"
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.barTintColor = UIColor.colorWithRGBHex(hex: 0xff8a69)
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationBarAppearance.backgroundColor = .colorWithRGBHex(hex: 0xff8a69)
+        navigationBarAppearance.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        self.navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
         
         self.view.addSubview(clipsTableView)
         clipsTableView.frame = self.view.bounds
@@ -111,13 +117,6 @@ class MainViewController: UIViewController {
         clipsTableView.dataSource = self
         clipsTableView.register(MainTableCustomCell.self, forCellReuseIdentifier: "clipCell")
 
-        navigationItem.title = "클립보드"
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.barTintColor = UIColor.colorWithRGBHex(hex: 0xff8a69)
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
         // 검색 기능
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -129,26 +128,25 @@ class MainViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        
-//        앱 구조 바꾸면서 메뉴 뷰에서 메인 뷰 띄울 때 변화된 아이템으로 초기화하기 때문에 필요없음
-//        items에 변화가 있을 때마다 테이블뷰를 리로드할 수 있도록 노티피케이션 등록
-//        notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
-//            switch changes {
-//            case .initial:
-//                // Results are now populated and can be accessed without blocking the UI
-//                DispatchQueue.main.async {
-//                    self?.reloadData()
-//                }
-//            case .update:
-//                DispatchQueue.main.async {
-//                    self?.reloadData()
-//                }
-//            case .error(let error):
-//                // An error occurred while opening the Realm file on the background worker thread
-//                fatalError("\(error)")
-//            }
-//        }
-//
+
+        notificationToken = items!.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                self?.clipsTableView.reloadData()
+            case .update(_, let deletions, let insertions, let updates):
+                self?.clipsTableView.beginUpdates()
+                self?.clipsTableView.insertRows(at: insertions.map {IndexPath(row: $0, section: 0)}, with: .automatic)
+                self?.clipsTableView.reloadRows(at: updates.map {IndexPath(row: $0, section: 0)}, with: .automatic)
+                self?.clipsTableView.deleteRows(at: deletions.map {IndexPath(row: $0, section: 0)}, with: .automatic)
+                self?.clipsTableView.endUpdates()
+
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+            }
+        }
+
 
     }
 }
@@ -204,7 +202,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 item.isDeleted = true
                 item.modiDate = Date()
             }
-            self.clipsTableView.reloadData()
             return true
         })
         delBtn.tintColor = .white
@@ -224,7 +221,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                         item.color = index
                     }
                 }
-                self.clipsTableView.reloadData()
                 return true
                 
             })
