@@ -10,8 +10,17 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var textView: UITextView!
+    let textView = UITextView()
     var copiedText: String?
+    
+    init(copiedText: String) {
+        self.copiedText = copiedText
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +31,11 @@ class DetailViewController: UIViewController {
             textView.text = str
         }
         
-        // 텍스트에서 링크 감지
+        // 텍스트 뷰 설정
+        self.textView.frame = self.view.frame
         self.textView.isEditable = false
         self.textView.dataDetectorTypes = .link
-        
+        self.view.addSubview(textView)
 
         // Do any additional setup after loading the view.
     }

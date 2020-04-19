@@ -253,23 +253,15 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.performSegue(withIdentifier: "DetailSegue", sender: self)
+        guard let item = items?[indexPath.row] else {
+            print("can't find results of realm object")
+            return
+        }
+        let detailViewController = DetailViewController(copiedText: item.copiedText)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "DetailSegue" {
-//            if let tableView = self.clipsTableView {
-//                if let indexPath = tableView.indexPathForSelectedRow {
-//                    if let vc = segue.destination as? DetailViewController {
-//                        if let item = items?[indexPath.row] {
-//                            vc.copiedText = item.copiedText
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+
     
     @objc func copyText(_ sender: UIButton) {
         if let item = items?[sender.tag] {
