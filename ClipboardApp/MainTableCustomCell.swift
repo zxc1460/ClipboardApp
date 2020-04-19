@@ -24,6 +24,7 @@ class MainTableCustomCell: MGSwipeTableCell {
         colorTag.tintColor = .white
         
         copyBtn.setImage(UIImage(systemName: "doc.on.clipboard"), for: .normal)
+        copyBtn.tintColor = .gray
     }
     
     required init?(coder: NSCoder) {
@@ -36,16 +37,17 @@ class MainTableCustomCell: MGSwipeTableCell {
         self.contentView.addSubview(copyBtn)
         
         colorTag.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView).offset(20)
-            make.bottom.equalTo(self.contentView).offset(-20)
-            make.left.equalTo(self.contentView).offset(20)
+            make.top.equalTo(self.contentView).offset(28)
+            make.bottom.equalTo(self.contentView).offset(-28)
+            make.left.equalTo(self.contentView).offset(24)
+            make.width.equalTo(15)
         }
         
         contextLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.contentView).offset(20)
             make.bottom.equalTo(self.contentView).offset(-20)
             make.left.equalTo(self.colorTag.snp.right).offset(20)
-            make.width.equalTo(300)
+            make.width.equalTo(290)
         }
         
         copyBtn.snp.makeConstraints { (make) in
@@ -53,6 +55,7 @@ class MainTableCustomCell: MGSwipeTableCell {
             make.bottom.equalTo(self.contentView).offset(-20)
             make.left.equalTo(self.contextLabel.snp.right).offset(20)
             make.right.equalTo(self.contentView).offset(-20)
+            make.width.equalTo(20)
         }
     }
     

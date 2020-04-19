@@ -166,6 +166,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if let count = items?.count {
             if isFiltering {
                 return filteredClips.count
@@ -196,7 +197,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         var colorTagBtns : [MGSwipeButton] = []
         
-        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "icons8-trash"), backgroundColor: .red, callback: {
+        let delBtn = MGSwipeButton(title: "", icon:UIImage(named: "Bin"), backgroundColor: .red, callback: {
             (sender: MGSwipeTableCell!) -> Bool in
             let realm = try! Realm()
             try! realm.write {
@@ -206,6 +207,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             self.clipsTableView.reloadData()
             return true
         })
+        delBtn.tintColor = .white
         
         
         let colorIndex = item.color
@@ -246,6 +248,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.rightButtons = colorTagBtns
         cell.contextLabel.text = item.copiedText
         
+        cell.contextLabel.font = UIFont.systemFont(ofSize: 15)
         return cell
     }
     
