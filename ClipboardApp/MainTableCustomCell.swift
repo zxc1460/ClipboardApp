@@ -40,6 +40,7 @@ class MainTableCustomCell: MGSwipeTableCell {
             make.top.equalTo(self.contentView).offset(28)
             make.bottom.equalTo(self.contentView).offset(-28)
             make.left.equalTo(self.contentView).offset(24)
+            make.width.equalTo(15)
         }
         
         contextLabel.snp.makeConstraints { (make) in
@@ -54,6 +55,7 @@ class MainTableCustomCell: MGSwipeTableCell {
             make.bottom.equalTo(self.contentView).offset(-20)
             make.left.equalTo(self.contextLabel.snp.right).offset(20)
             make.right.equalTo(self.contentView).offset(-20)
+            make.width.equalTo(20)
         }
     }
     

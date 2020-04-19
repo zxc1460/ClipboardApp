@@ -39,7 +39,7 @@ class SideMenuViewController: UIViewController {
         self.tableView.dataSource = self
         
         // 스크롤 X
-        self.tableView.isScrollEnabled = false
+//        self.tableView.isScrollEnabled = false
         
         // 메뉴를 가장한 BackButton(pop!)
         let backItem = UIBarButtonItem(title: "메뉴", style: .plain, target: nil, action: nil)
@@ -119,8 +119,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        
+    
         if section == 0 {
             return " "
         } else if section == 1 {
